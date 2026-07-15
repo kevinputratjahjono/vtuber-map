@@ -9,6 +9,9 @@
   // ---- 1. Load & process data ----
   let rows, provMap, global;
   try {
+    // data/viewers.csv sudah berisi data gabungan final (dummy + YouTube + form).
+    // DataModule.load() tetap mendukung array file kalau nanti Anda mau
+    // pisahkan lagi sumbernya.
     rows    = await DataModule.load('data/viewers.csv');
     provMap = DataModule.getProvSummary();
     global  = DataModule.getGlobal();

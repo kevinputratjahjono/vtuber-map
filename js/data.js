@@ -64,24 +64,50 @@ const DataModule = (() => {
     'Papua Pegunungan':         'Papua Pegunungan',
   };
 
+  /* ---- Parse one CSV line into fields, RFC4180-aware ---- */
+  // Menangani: field yang dibungkus tanda kutip ("..."), koma di dalam
+  // tanda kutip (mis. komentar YouTube asli "keren, mantap!"), dan
+  // tanda kutip ganda ("") sebagai escape untuk kutip literal.
+  function parseCSVLine(line) {
+    const fields = [];
+    let cur = '';
+    let inQuotes = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (inQuotes) {
+        if (ch === '"') {
+          if (line[i + 1] === '"') { cur += '"'; i++; }
+          else { inQuotes = false; }
+        } else {
+          cur += ch;
+        }
+      } else {
+        if (ch === '"') inQuotes = true;
+        else if (ch === ',') { fields.push(cur); cur = ''; }
+        else cur += ch;
+      }
+    }
+    fields.push(cur);
+    return fields;
+  }
+
   /* ---- Parse CSV text → array of objects ---- */
   function parseCSV(csvText) {
-    const lines = csvText.trim().split('\n');
-    const headers = lines[0].split(',').map(h => h.trim());
-    return lines.slice(1).map(line => {
-      // Handle commas inside message field
-      const parts = line.split(',');
-      const obj = {};
-      headers.forEach((h, i) => {
-        obj[h] = (parts[i] || '').trim();
-      });
-      // Merge trailing parts as message (message is last column)
-      const msgIdx = headers.indexOf('message');
-      if (msgIdx >= 0 && parts.length > headers.length) {
-        obj['message'] = parts.slice(msgIdx).join(',').trim();
-      }
-      return obj;
-    }).filter(r => r.province);
+    // Dukung baris baru \r\n maupun \n, dan buang baris kosong di akhir file
+    const lines = csvText.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n');
+    if (!lines.length) return [];
+    const headers = parseCSVLine(lines[0]).map(h => h.trim());
+    return lines.slice(1)
+      .filter(line => line.trim() !== '')
+      .map(line => {
+        const parts = parseCSVLine(line);
+        const obj = {};
+        headers.forEach((h, i) => {
+          obj[h] = (parts[i] !== undefined ? parts[i] : '').trim();
+        });
+        return obj;
+      })
+      .filter(r => r.province);
   }
 
   /* ---- Normalize province name ---- */
@@ -208,11 +234,37 @@ const DataModule = (() => {
   }
 
   /* ---- Public API ---- */
-  async function load(csvUrl) {
-    const resp = await fetch(csvUrl);
-    if (!resp.ok) throw new Error('HTTP ' + resp.status + ' — ' + csvUrl);
-    const text = await resp.text();
-    rawRows = parseCSV(text);
+  // csvUrls bisa berupa string tunggal atau array string.
+  // Setiap URL di-fetch & di-parse; hasilnya digabung jadi satu rawRows.
+  // Kalau salah satu file gagal (mis. belum ada data/viewers_youtube.csv),
+  // itu di-skip dengan warning — tidak menggagalkan seluruh load selama
+  // MINIMAL SATU file berhasil dimuat.
+  async function load(csvUrls) {
+    const urls = Array.isArray(csvUrls) ? csvUrls : [csvUrls];
+    let merged = [];
+    let anySuccess = false;
+    let nextId = 1;
+
+    for (const url of urls) {
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error('HTTP ' + resp.status + ' — ' + url);
+        const text = await resp.text();
+        const parsed = parseCSV(text);
+        // Re-number id supaya tidak bentrok antar file saat digabung
+        parsed.forEach(r => { r.id = String(nextId++); });
+        merged = merged.concat(parsed);
+        anySuccess = true;
+      } catch (e) {
+        console.warn('Lewati file CSV (gagal dimuat):', url, e.message);
+      }
+    }
+
+    if (!anySuccess) {
+      throw new Error('Semua file CSV gagal dimuat: ' + urls.join(', '));
+    }
+
+    rawRows = merged;
     return rawRows;
   }
 

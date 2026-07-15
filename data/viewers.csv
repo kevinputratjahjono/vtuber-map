@@ -1,102 +1,731 @@
-id,province,city,gender,age,status,watch_start_hour,watch_end_hour,message
-1,DKI Jakarta,Jakarta Pusat,Male,19,Student,20,23,Nijisanji ID forever!!!
-2,DKI Jakarta,Jakarta Selatan,Female,22,Worker,21,24,Hana Macchia suara merdu banget
-3,DKI Jakarta,Jakarta Barat,Male,17,Student,19,22,Zeta keren parah
-4,DKI Jakarta,Jakarta Timur,Female,25,Worker,22,1,Suka banget sama livenya
-5,DKI Jakarta,Jakarta Utara,Male,20,Student,20,23,Kaela Kovalskia best girl
-6,Jawa Barat,Bandung,Male,18,Student,19,22,Kobo Kanaeru lucu bgt
-7,Jawa Barat,Bekasi,Female,23,Worker,21,23,Zeta Gaming is amazing
-8,Jawa Barat,Depok,Male,21,Student,20,22,Vestia Zeta mantap
-9,Jawa Barat,Bogor,Female,16,Student,18,21,Holo ID kawai!
-10,Jawa Barat,Cirebon,Male,24,Worker,22,24,Push terus streamnya
-11,Jawa Tengah,Semarang,Female,19,Student,20,23,ANYCOLOR LOVE
-12,Jawa Tengah,Solo,Male,22,Worker,21,24,Suka nonton bareng teman
-13,Jawa Tengah,Yogyakarta,Female,20,Student,19,22,Kaela gaming lucu parah
-14,Jawa Tengah,Magelang,Male,17,Student,18,21,Idol corp keren
-15,Jawa Tengah,Pekalongan,Female,25,Worker,22,1,Nonton sambil kerja enak
-16,Jawa Timur,Surabaya,Male,21,Student,20,23,Kobo seru banget
-17,Jawa Timur,Malang,Female,18,Student,19,22,HoloID semangat!
-18,Jawa Timur,Sidoarjo,Male,23,Worker,21,23,Zeta parah kocaknya
-19,Jawa Timur,Kediri,Female,26,Worker,22,24,Suka desain Live2D nya
-20,Jawa Timur,Madiun,Male,19,Student,20,22,Niji ID stream kapan?
-21,Banten,Tangerang,Female,22,Worker,21,24,Jakarta macet nonton stream aja
-22,Banten,Serang,Male,20,Student,20,23,Vtuber lokal lebih keren
-23,Banten,Cilegon,Female,17,Student,18,21,Suka banget kontennya
-24,Bali,Denpasar,Male,24,Worker,22,1,Zeta best streamer
-25,Bali,Kuta,Female,21,Student,21,23,HoloID dari Bali wajib support
-26,Bali,Ubud,Male,19,Student,20,22,Konten gaming seru
-27,Sumatera Utara,Medan,Female,23,Worker,21,24,Medan juga suka vtuber
-28,Sumatera Utara,Binjai,Male,18,Student,20,22,Niji ID keren abis
-29,Sumatera Utara,Pematang Siantar,Female,20,Student,19,22,Hana Macchia favoritku
-30,Sumatera Barat,Padang,Male,22,Worker,21,23,Minang juga nonton vtuber
-31,Sumatera Barat,Bukittinggi,Female,19,Student,20,22,Kaela lucu banget
-32,Riau,Pekanbaru,Male,25,Worker,22,24,Riau represent!
-33,Riau,Dumai,Female,21,Student,21,23,Suka Live2D model HoloID
-34,Kepulauan Riau,Batam,Male,20,Student,20,22,Batam juga hadir
-35,Kepulauan Riau,Tanjung Pinang,Female,18,Student,19,21,Suka nonton malam
-36,Jambi,Jambi,Male,23,Worker,21,24,Jambi also watching!
-37,Sumatera Selatan,Palembang,Female,22,Student,20,23,Palembang nonton stream
-38,Sumatera Selatan,Lubuk Linggau,Male,19,Student,19,22,Kobo kawai desu
-39,Bengkulu,Bengkulu,Female,24,Worker,22,1,Nonton setelah kerja
-40,Lampung,Bandar Lampung,Male,20,Student,21,23,Lampung ada juga nih
-41,Lampung,Metro,Female,17,Student,18,21,Suka fanart vtuber
-42,Kalimantan Barat,Pontianak,Male,22,Worker,21,24,Pontianak hadir
-43,Kalimantan Barat,Singkawang,Female,19,Student,20,22,Vtuber Indonesia terbaik
-44,Kalimantan Tengah,Palangka Raya,Male,21,Student,20,23,Tengah Kalimantan juga nonton
-45,Kalimantan Selatan,Banjarmasin,Female,23,Worker,22,24,Banjar nonton stream
-46,Kalimantan Selatan,Banjarbaru,Male,18,Student,19,22,Suka collab antar vtuber
-47,Kalimantan Timur,Samarinda,Female,25,Worker,21,23,Kaltim represent!
-48,Kalimantan Timur,Balikpapan,Male,20,Student,20,22,Balikpapan hadir
-49,Kalimantan Utara,Tarakan,Female,22,Worker,22,24,Utara Kalimantan juga
-50,Sulawesi Utara,Manado,Male,19,Student,20,23,Manado nonton vtuber
-51,Sulawesi Utara,Bitung,Female,21,Student,21,23,Sulut hadir
-52,Sulawesi Tengah,Palu,Male,24,Worker,22,1,Palu juga nonton
-53,Sulawesi Selatan,Makassar,Female,20,Student,20,23,Makassar represent!
-54,Sulawesi Selatan,Parepare,Male,18,Student,19,22,Suka stream gaming
-55,Sulawesi Selatan,Palopo,Female,22,Worker,21,24,Sulsel nonton bareng
-56,Sulawesi Tenggara,Kendari,Male,23,Worker,22,23,Kendari juga hadir
-57,Sulawesi Barat,Mamuju,Female,19,Student,20,22,Sulbar nonton vtuber
-58,Gorontalo,Gorontalo,Male,21,Student,21,23,Gorontalo hadir juga
-59,Maluku,Ambon,Female,25,Worker,22,24,Ambon nonton stream
-60,Maluku Utara,Ternate,Male,20,Student,21,23,Ternate juga suka vtuber
-61,Papua,Jayapura,Female,22,Worker,22,1,Papua hadir
-62,Papua Barat,Manokwari,Male,19,Student,20,22,Papua Barat nonton
-63,NTB,Mataram,Female,23,Worker,21,24,NTB juga nonton
-64,NTB,Bima,Male,18,Student,19,22,Suka vtuber gaming
-65,NTT,Kupang,Female,20,Student,20,23,NTT hadir
-66,DKI Jakarta,Jakarta Pusat,Male,23,Worker,21,24,Holo ID terbaik
-67,DKI Jakarta,Jakarta Selatan,Female,19,Student,20,22,Zeta Gaming lucu
-68,DKI Jakarta,Jakarta Barat,Male,25,Worker,22,1,Nonton sambil lembur
-69,Jawa Barat,Bandung,Female,17,Student,18,21,Bandung vtuber fans
-70,Jawa Barat,Bekasi,Male,22,Worker,21,23,Kobo stream kapan lagi
-71,Jawa Barat,Depok,Female,20,Student,20,22,Suka sama outfit Live2D
-72,Jawa Tengah,Semarang,Male,24,Worker,22,24,Semarang juga hadir
-73,Jawa Tengah,Yogyakarta,Female,21,Student,20,23,Jogja vtuber fans
-74,Jawa Timur,Surabaya,Male,18,Student,19,22,Sby always here
-75,Jawa Timur,Malang,Female,23,Worker,21,24,Malang nonton stream
-76,Bali,Denpasar,Male,20,Student,20,23,Bali represent
-77,Sumatera Utara,Medan,Female,25,Worker,22,1,Medan hadir terus
-78,DKI Jakarta,Jakarta Selatan,Male,19,Student,21,23,Suka banget sama nijisanji
-79,DKI Jakarta,Jakarta Pusat,Female,22,Worker,20,23,Kaela konten bagus banget
-80,Jawa Barat,Bandung,Male,21,Student,19,22,Bandung proud vtuber fans
-81,Jawa Barat,Bekasi,Female,18,Student,20,22,Kobo ngegame seru
-82,Jawa Tengah,Solo,Male,24,Worker,21,24,Solo hadir ya
-83,Jawa Timur,Surabaya,Female,20,Student,20,23,Surabaya nonton bareng
-84,Banten,Tangerang,Male,17,Student,18,21,Tangerang juga ada
-85,Bali,Kuta,Female,23,Worker,22,24,Kuta beach sambil nonton
-86,Sulawesi Selatan,Makassar,Male,19,Student,20,23,Makassar vtuber community
-87,Kalimantan Timur,Samarinda,Female,21,Student,21,23,IKN tetap nonton vtuber
-88,DKI Jakarta,Jakarta Timur,Male,26,Worker,22,1,Udah tua tapi masih nonton
-89,DKI Jakarta,Jakarta Utara,Female,20,Student,20,22,Jakarta utara hadir
-90,Jawa Barat,Cirebon,Male,18,Student,19,21,Cirebon juga nonton
-91,Jawa Tengah,Pekalongan,Female,24,Worker,22,24,Pekalongan hadir
-92,Jawa Timur,Kediri,Male,21,Student,20,23,Kediri nonton
-93,Sumatera Barat,Padang,Female,19,Student,20,22,Padang juga keren
-94,Riau,Pekanbaru,Male,23,Worker,21,24,Pekanbaru stream marathon
-95,Sulawesi Utara,Manado,Female,22,Student,21,23,Manado juga hadir lagi
-96,Maluku,Ambon,Male,20,Worker,22,1,Ambon tetap nonton
-97,Papua,Jayapura,Female,18,Student,20,22,Jayapura hadir
-98,NTB,Mataram,Male,25,Worker,21,24,Mataram nonton
-99,Kalimantan Barat,Pontianak,Female,19,Student,20,22,Pontianak hadir lagi
-100,Sulawesi Selatan,Makassar,Male,22,Worker,21,23,Makassar vtuber lovers
-101,DKI Jakarta,Jakarta Utara,Female,23,Student,23,03,Kaela Kovalskia best gamer
+id,province,city,gender,age,status,watch_start_hour,watch_end_hour,message,source
+1,DKI Jakarta,Jakarta Pusat,Male,19,Student,20,23,Nijisanji ID forever!!!,dummy
+2,DKI Jakarta,Jakarta Selatan,Female,22,Worker,21,24,Hana Macchia suara merdu banget,dummy
+3,DKI Jakarta,Jakarta Barat,Male,17,Student,19,22,Zeta keren parah,dummy
+4,DKI Jakarta,Jakarta Timur,Female,25,Worker,22,1,Suka banget sama livenya,dummy
+5,DKI Jakarta,Jakarta Utara,Male,20,Student,20,23,Kaela Kovalskia best girl,dummy
+6,Jawa Barat,Bandung,Male,18,Student,19,22,Kobo Kanaeru lucu bgt,dummy
+7,Jawa Barat,Bekasi,Female,23,Worker,21,23,Zeta Gaming is amazing,dummy
+8,Jawa Barat,Depok,Male,21,Student,20,22,Vestia Zeta mantap,dummy
+9,Jawa Barat,Bogor,Female,16,Student,18,21,Holo ID kawai!,dummy
+10,Jawa Barat,Cirebon,Male,24,Worker,22,24,Push terus streamnya,dummy
+11,Jawa Tengah,Semarang,Female,19,Student,20,23,ANYCOLOR LOVE,dummy
+12,Jawa Tengah,Solo,Male,22,Worker,21,24,Suka nonton bareng teman,dummy
+13,Jawa Tengah,Yogyakarta,Female,20,Student,19,22,Kaela gaming lucu parah,dummy
+14,Jawa Tengah,Magelang,Male,17,Student,18,21,Idol corp keren,dummy
+15,Jawa Tengah,Pekalongan,Female,25,Worker,22,1,Nonton sambil kerja enak,dummy
+16,Jawa Timur,Surabaya,Male,21,Student,20,23,Kobo seru banget,dummy
+17,Jawa Timur,Malang,Female,18,Student,19,22,HoloID semangat!,dummy
+18,Jawa Timur,Sidoarjo,Male,23,Worker,21,23,Zeta parah kocaknya,dummy
+19,Jawa Timur,Kediri,Female,26,Worker,22,24,Suka desain Live2D nya,dummy
+20,Jawa Timur,Madiun,Male,19,Student,20,22,Niji ID stream kapan?,dummy
+21,Banten,Tangerang,Female,22,Worker,21,24,Jakarta macet nonton stream aja,dummy
+22,Banten,Serang,Male,20,Student,20,23,Vtuber lokal lebih keren,dummy
+23,Banten,Cilegon,Female,17,Student,18,21,Suka banget kontennya,dummy
+24,Bali,Denpasar,Male,24,Worker,22,1,Zeta best streamer,dummy
+25,Bali,Kuta,Female,21,Student,21,23,HoloID dari Bali wajib support,dummy
+26,Bali,Ubud,Male,19,Student,20,22,Konten gaming seru,dummy
+27,Sumatera Utara,Medan,Female,23,Worker,21,24,Medan juga suka vtuber,dummy
+28,Sumatera Utara,Binjai,Male,18,Student,20,22,Niji ID keren abis,dummy
+29,Sumatera Utara,Pematang Siantar,Female,20,Student,19,22,Hana Macchia favoritku,dummy
+30,Sumatera Barat,Padang,Male,22,Worker,21,23,Minang juga nonton vtuber,dummy
+31,Sumatera Barat,Bukittinggi,Female,19,Student,20,22,Kaela lucu banget,dummy
+32,Riau,Pekanbaru,Male,25,Worker,22,24,Riau represent!,dummy
+33,Riau,Dumai,Female,21,Student,21,23,Suka Live2D model HoloID,dummy
+34,Kepulauan Riau,Batam,Male,20,Student,20,22,Batam juga hadir,dummy
+35,Kepulauan Riau,Tanjung Pinang,Female,18,Student,19,21,Suka nonton malam,dummy
+36,Jambi,Jambi,Male,23,Worker,21,24,Jambi also watching!,dummy
+37,Sumatera Selatan,Palembang,Female,22,Student,20,23,Palembang nonton stream,dummy
+38,Sumatera Selatan,Lubuk Linggau,Male,19,Student,19,22,Kobo kawai desu,dummy
+39,Bengkulu,Bengkulu,Female,24,Worker,22,1,Nonton setelah kerja,dummy
+40,Lampung,Bandar Lampung,Male,20,Student,21,23,Lampung ada juga nih,dummy
+41,Lampung,Metro,Female,17,Student,18,21,Suka fanart vtuber,dummy
+42,Kalimantan Barat,Pontianak,Male,22,Worker,21,24,Pontianak hadir,dummy
+43,Kalimantan Barat,Singkawang,Female,19,Student,20,22,Vtuber Indonesia terbaik,dummy
+44,Kalimantan Tengah,Palangka Raya,Male,21,Student,20,23,Tengah Kalimantan juga nonton,dummy
+45,Kalimantan Selatan,Banjarmasin,Female,23,Worker,22,24,Banjar nonton stream,dummy
+46,Kalimantan Selatan,Banjarbaru,Male,18,Student,19,22,Suka collab antar vtuber,dummy
+47,Kalimantan Timur,Samarinda,Female,25,Worker,21,23,Kaltim represent!,dummy
+48,Kalimantan Timur,Balikpapan,Male,20,Student,20,22,Balikpapan hadir,dummy
+49,Kalimantan Utara,Tarakan,Female,22,Worker,22,24,Utara Kalimantan juga,dummy
+50,Sulawesi Utara,Manado,Male,19,Student,20,23,Manado nonton vtuber,dummy
+51,Sulawesi Utara,Bitung,Female,21,Student,21,23,Sulut hadir,dummy
+52,Sulawesi Tengah,Palu,Male,24,Worker,22,1,Palu juga nonton,dummy
+53,Sulawesi Selatan,Makassar,Female,20,Student,20,23,Makassar represent!,dummy
+54,Sulawesi Selatan,Parepare,Male,18,Student,19,22,Suka stream gaming,dummy
+55,Sulawesi Selatan,Palopo,Female,22,Worker,21,24,Sulsel nonton bareng,dummy
+56,Sulawesi Tenggara,Kendari,Male,23,Worker,22,23,Kendari juga hadir,dummy
+57,Sulawesi Barat,Mamuju,Female,19,Student,20,22,Sulbar nonton vtuber,dummy
+58,Gorontalo,Gorontalo,Male,21,Student,21,23,Gorontalo hadir juga,dummy
+59,Maluku,Ambon,Female,25,Worker,22,24,Ambon nonton stream,dummy
+60,Maluku Utara,Ternate,Male,20,Student,21,23,Ternate juga suka vtuber,dummy
+61,Papua,Jayapura,Female,22,Worker,22,1,Papua hadir,dummy
+62,Papua Barat,Manokwari,Male,19,Student,20,22,Papua Barat nonton,dummy
+63,NTB,Mataram,Female,23,Worker,21,24,NTB juga nonton,dummy
+64,NTB,Bima,Male,18,Student,19,22,Suka vtuber gaming,dummy
+65,NTT,Kupang,Female,20,Student,20,23,NTT hadir,dummy
+66,DKI Jakarta,Jakarta Pusat,Male,23,Worker,21,24,Holo ID terbaik,dummy
+67,DKI Jakarta,Jakarta Selatan,Female,19,Student,20,22,Zeta Gaming lucu,dummy
+68,DKI Jakarta,Jakarta Barat,Male,25,Worker,22,1,Nonton sambil lembur,dummy
+69,Jawa Barat,Bandung,Female,17,Student,18,21,Bandung vtuber fans,dummy
+70,Jawa Barat,Bekasi,Male,22,Worker,21,23,Kobo stream kapan lagi,dummy
+71,Jawa Barat,Depok,Female,20,Student,20,22,Suka sama outfit Live2D,dummy
+72,Jawa Tengah,Semarang,Male,24,Worker,22,24,Semarang juga hadir,dummy
+73,Jawa Tengah,Yogyakarta,Female,21,Student,20,23,Jogja vtuber fans,dummy
+74,Jawa Timur,Surabaya,Male,18,Student,19,22,Sby always here,dummy
+75,Jawa Timur,Malang,Female,23,Worker,21,24,Malang nonton stream,dummy
+76,Bali,Denpasar,Male,20,Student,20,23,Bali represent,dummy
+77,Sumatera Utara,Medan,Female,25,Worker,22,1,Medan hadir terus,dummy
+78,DKI Jakarta,Jakarta Selatan,Male,19,Student,21,23,Suka banget sama nijisanji,dummy
+79,DKI Jakarta,Jakarta Pusat,Female,22,Worker,20,23,Kaela konten bagus banget,dummy
+80,Jawa Barat,Bandung,Male,21,Student,19,22,Bandung proud vtuber fans,dummy
+81,Jawa Barat,Bekasi,Female,18,Student,20,22,Kobo ngegame seru,dummy
+82,Jawa Tengah,Solo,Male,24,Worker,21,24,Solo hadir ya,dummy
+83,Jawa Timur,Surabaya,Female,20,Student,20,23,Surabaya nonton bareng,dummy
+84,Banten,Tangerang,Male,17,Student,18,21,Tangerang juga ada,dummy
+85,Bali,Kuta,Female,23,Worker,22,24,Kuta beach sambil nonton,dummy
+86,Sulawesi Selatan,Makassar,Male,19,Student,20,23,Makassar vtuber community,dummy
+87,Kalimantan Timur,Samarinda,Female,21,Student,21,23,IKN tetap nonton vtuber,dummy
+88,DKI Jakarta,Jakarta Timur,Male,26,Worker,22,1,Udah tua tapi masih nonton,dummy
+89,DKI Jakarta,Jakarta Utara,Female,20,Student,20,22,Jakarta utara hadir,dummy
+90,Jawa Barat,Cirebon,Male,18,Student,19,21,Cirebon juga nonton,dummy
+91,Jawa Tengah,Pekalongan,Female,24,Worker,22,24,Pekalongan hadir,dummy
+92,Jawa Timur,Kediri,Male,21,Student,20,23,Kediri nonton,dummy
+93,Sumatera Barat,Padang,Female,19,Student,20,22,Padang juga keren,dummy
+94,Riau,Pekanbaru,Male,23,Worker,21,24,Pekanbaru stream marathon,dummy
+95,Sulawesi Utara,Manado,Female,22,Student,21,23,Manado juga hadir lagi,dummy
+96,Maluku,Ambon,Male,20,Worker,22,1,Ambon tetap nonton,dummy
+97,Papua,Jayapura,Female,18,Student,20,22,Jayapura hadir,dummy
+98,NTB,Mataram,Male,25,Worker,21,24,Mataram nonton,dummy
+99,Kalimantan Barat,Pontianak,Female,19,Student,20,22,Pontianak hadir lagi,dummy
+100,Sulawesi Selatan,Makassar,Male,22,Worker,21,23,Makassar vtuber lovers,dummy
+101,DKI Jakarta,Jakarta Utara,Female,23,Student,23,3,Kaela Kovalskia best gamer,dummy
+102,DKI Jakarta,Jakarta Selatan,Male,22,Student,22,0,DKI Jakarta hadir!,youtube
+103,DKI Jakarta,Jakarta Pusat,Male,20,Worker,21,0,Vtuber terbaik!,youtube
+104,DKI Jakarta,Jakarta Utara,Male,20,Student,19,21,Vtuber terbaik!,youtube
+105,DKI Jakarta,Jakarta Utara,Male,20,Student,23,2,Keep streaming!,youtube
+106,DKI Jakarta,Jakarta Pusat,Male,27,Worker,19,22,DKI Jakarta hadir!,youtube
+107,DKI Jakarta,Jakarta Barat,Male,24,Student,0,1,Nonton dari DKI Jakarta!,youtube
+108,DKI Jakarta,Jakarta Utara,Male,19,Student,20,23,Salam dari DKI Jakarta!,youtube
+109,DKI Jakarta,Jakarta Timur,Female,23,Worker,20,22,Nonton dari DKI Jakarta!,youtube
+110,DKI Jakarta,Jakarta Barat,Male,21,Worker,20,23,Vtuber terbaik!,youtube
+111,DKI Jakarta,Jakarta Barat,Male,13,Student,20,23,Nonton dari DKI Jakarta!,youtube
+112,DKI Jakarta,Jakarta Timur,Female,16,Worker,20,22,Suka banget kontennya!,youtube
+113,DKI Jakarta,Jakarta Barat,Female,22,Student,20,22,Terus berkarya!,youtube
+114,DKI Jakarta,Jakarta Selatan,Female,26,Worker,20,23,Semangat terus!,youtube
+115,DKI Jakarta,Jakarta Utara,Male,20,Student,21,23,DKI Jakarta selalu support!,youtube
+116,DKI Jakarta,Jakarta Selatan,Male,18,Worker,21,0,Viewer dari DKI Jakarta!,youtube
+117,DKI Jakarta,Jakarta Utara,Female,21,Student,20,21,Terus berkarya!,youtube
+118,DKI Jakarta,Jakarta Timur,Male,18,Worker,21,23,DKI Jakarta hadir!,youtube
+119,DKI Jakarta,Jakarta Barat,Male,19,Student,20,22,Terus berkarya!,youtube
+120,DKI Jakarta,Jakarta Selatan,Male,20,Worker,19,21,DKI Jakarta hadir!,youtube
+121,DKI Jakarta,Jakarta Pusat,Male,16,Student,23,0,DKI Jakarta hadir!,youtube
+122,DKI Jakarta,Jakarta Pusat,Male,24,Worker,20,22,Keep streaming!,youtube
+123,DKI Jakarta,Jakarta Utara,Male,16,Worker,21,23,Viewer dari DKI Jakarta!,youtube
+124,DKI Jakarta,Jakarta Barat,Male,15,Student,0,3,Suka banget kontennya!,youtube
+125,DKI Jakarta,Jakarta Pusat,Male,21,Student,22,23,Terus berkarya!,youtube
+126,DKI Jakarta,Jakarta Selatan,Female,23,Student,19,21,Semangat terus!,youtube
+127,DKI Jakarta,Jakarta Utara,Female,21,Worker,20,22,Vtuber terbaik!,youtube
+128,DKI Jakarta,Jakarta Utara,Male,20,Student,20,21,Viewer dari DKI Jakarta!,youtube
+129,DKI Jakarta,Jakarta Barat,Male,19,Student,20,21,Salam dari DKI Jakarta!,youtube
+130,DKI Jakarta,Jakarta Pusat,Male,19,Student,20,22,Nonton dari DKI Jakarta!,youtube
+131,DKI Jakarta,Jakarta Utara,Male,25,Worker,21,1,DKI Jakarta hadir!,youtube
+132,DKI Jakarta,Jakarta Barat,Male,22,Student,19,21,Semangat terus!,youtube
+133,DKI Jakarta,Jakarta Utara,Female,19,Student,0,2,Terus berkarya!,youtube
+134,DKI Jakarta,Jakarta Barat,Male,18,Worker,19,21,Konten keren terus ya!,youtube
+135,DKI Jakarta,Jakarta Pusat,Female,23,Student,22,0,Represent DKI Jakarta!,youtube
+136,DKI Jakarta,Jakarta Pusat,Male,25,Worker,22,0,Nonton dari DKI Jakarta!,youtube
+137,DKI Jakarta,Jakarta Pusat,Male,24,Student,19,20,Represent DKI Jakarta!,youtube
+138,DKI Jakarta,Jakarta Selatan,Male,17,Student,23,2,Semangat terus!,youtube
+139,DKI Jakarta,Jakarta Timur,Male,19,Worker,21,23,DKI Jakarta selalu support!,youtube
+140,DKI Jakarta,Jakarta Pusat,Female,19,Worker,20,21,Suka banget kontennya!,youtube
+141,DKI Jakarta,Jakarta Pusat,Male,20,Student,20,22,Suka banget kontennya!,youtube
+142,DKI Jakarta,Jakarta Barat,Male,24,Worker,23,0,Nonton dari DKI Jakarta!,youtube
+143,DKI Jakarta,Jakarta Timur,Male,26,Student,21,23,DKI Jakarta hadir!,youtube
+144,DKI Jakarta,Jakarta Timur,Male,22,Student,22,2,Semangat terus!,youtube
+145,DKI Jakarta,Jakarta Pusat,Male,18,Worker,21,23,Nonton dari DKI Jakarta!,youtube
+146,DKI Jakarta,Jakarta Timur,Female,20,Worker,21,22,Konten keren terus ya!,youtube
+147,DKI Jakarta,Jakarta Timur,Male,27,Student,20,21,Viewer dari DKI Jakarta!,youtube
+148,DKI Jakarta,Jakarta Timur,Female,21,Student,20,23,Salam dari DKI Jakarta!,youtube
+149,DKI Jakarta,Jakarta Utara,Male,19,Worker,21,1,Suka banget kontennya!,youtube
+150,DKI Jakarta,Jakarta Pusat,Male,20,Student,20,22,Vtuber terbaik!,youtube
+151,DKI Jakarta,Jakarta Pusat,Male,22,Student,22,0,Vtuber terbaik!,youtube
+152,DKI Jakarta,Jakarta Pusat,Male,17,Worker,23,1,Semangat terus!,youtube
+153,DKI Jakarta,Jakarta Selatan,Male,18,Student,22,0,Keep streaming!,youtube
+154,DKI Jakarta,Jakarta Utara,Male,24,Worker,22,0,Viewer dari DKI Jakarta!,youtube
+155,DKI Jakarta,Jakarta Utara,Male,22,Student,20,22,Represent DKI Jakarta!,youtube
+156,DKI Jakarta,Jakarta Selatan,Female,21,Student,22,1,Salam dari DKI Jakarta!,youtube
+157,DKI Jakarta,Jakarta Barat,Male,24,Worker,23,1,Nonton dari DKI Jakarta!,youtube
+158,DKI Jakarta,Jakarta Pusat,Male,18,Worker,20,22,Nonton dari DKI Jakarta!,youtube
+159,DKI Jakarta,Jakarta Barat,Male,19,Student,20,21,Nonton dari DKI Jakarta!,youtube
+160,DKI Jakarta,Jakarta Utara,Female,22,Student,19,20,Terus berkarya!,youtube
+161,DKI Jakarta,Jakarta Utara,Male,22,Worker,21,0,Viewer dari DKI Jakarta!,youtube
+162,DKI Jakarta,Jakarta Pusat,Male,15,Worker,19,23,DKI Jakarta hadir!,youtube
+163,DKI Jakarta,Jakarta Selatan,Male,19,Worker,20,23,Salam dari DKI Jakarta!,youtube
+164,DKI Jakarta,Jakarta Barat,Male,20,Student,21,23,Semangat terus!,youtube
+165,DKI Jakarta,Jakarta Pusat,Male,22,Worker,22,1,Suka banget kontennya!,youtube
+166,DKI Jakarta,Jakarta Selatan,Male,22,Student,0,1,Suka banget kontennya!,youtube
+167,DKI Jakarta,Jakarta Timur,Female,20,Student,20,22,Semangat terus!,youtube
+168,DKI Jakarta,Jakarta Selatan,Male,13,Student,20,23,Semangat terus!,youtube
+169,DKI Jakarta,Jakarta Timur,Male,20,Student,19,21,DKI Jakarta hadir!,youtube
+170,DKI Jakarta,Jakarta Pusat,Male,21,Student,19,23,Represent DKI Jakarta!,youtube
+171,DKI Jakarta,Jakarta Utara,Male,30,Student,20,21,Keep streaming!,youtube
+172,DKI Jakarta,Jakarta Selatan,Female,20,Worker,19,23,DKI Jakarta hadir!,youtube
+173,DKI Jakarta,Jakarta Pusat,Female,22,Worker,21,0,DKI Jakarta hadir!,youtube
+174,DKI Jakarta,Jakarta Selatan,Male,25,Student,20,0,Salam dari DKI Jakarta!,youtube
+175,DKI Jakarta,Jakarta Pusat,Male,24,Worker,22,0,Konten keren terus ya!,youtube
+176,DKI Jakarta,Jakarta Barat,Male,26,Worker,21,23,DKI Jakarta selalu support!,youtube
+177,DKI Jakarta,Jakarta Barat,Male,15,Worker,21,23,Nonton dari DKI Jakarta!,youtube
+178,DKI Jakarta,Jakarta Timur,Female,17,Student,19,22,Suka banget kontennya!,youtube
+179,DKI Jakarta,Jakarta Pusat,Female,18,Student,21,1,Salam dari DKI Jakarta!,youtube
+180,DKI Jakarta,Jakarta Pusat,Male,14,Worker,21,23,Vtuber terbaik!,youtube
+181,DKI Jakarta,Jakarta Utara,Male,21,Worker,20,22,Semangat terus!,youtube
+182,DKI Jakarta,Jakarta Pusat,Male,17,Worker,23,0,Terus berkarya!,youtube
+183,DKI Jakarta,Jakarta Selatan,Male,27,Student,19,22,Represent DKI Jakarta!,youtube
+184,DKI Jakarta,Jakarta Utara,Male,17,Worker,23,3,Represent DKI Jakarta!,youtube
+185,DKI Jakarta,Jakarta Utara,Male,19,Student,23,3,Salam dari DKI Jakarta!,youtube
+186,DKI Jakarta,Jakarta Utara,Male,24,Student,22,1,DKI Jakarta hadir!,youtube
+187,DKI Jakarta,Jakarta Selatan,Male,16,Worker,21,23,Vtuber terbaik!,youtube
+188,DKI Jakarta,Jakarta Barat,Male,14,Student,19,22,Salam dari DKI Jakarta!,youtube
+189,DKI Jakarta,Jakarta Barat,Male,21,Worker,23,2,Konten keren terus ya!,youtube
+190,DKI Jakarta,Jakarta Selatan,Male,22,Worker,20,22,Suka banget kontennya!,youtube
+191,DKI Jakarta,Jakarta Barat,Male,24,Student,20,23,Nonton dari DKI Jakarta!,youtube
+192,DKI Jakarta,Jakarta Selatan,Female,23,Worker,23,2,DKI Jakarta selalu support!,youtube
+193,DKI Jakarta,Jakarta Utara,Male,22,Student,22,2,Nonton dari DKI Jakarta!,youtube
+194,DKI Jakarta,Jakarta Timur,Male,18,Worker,20,22,Konten keren terus ya!,youtube
+195,DKI Jakarta,Jakarta Pusat,Male,21,Student,23,2,Keep streaming!,youtube
+196,DKI Jakarta,Jakarta Timur,Male,22,Worker,19,22,Viewer dari DKI Jakarta!,youtube
+197,DKI Jakarta,Jakarta Selatan,Male,18,Worker,20,21,Konten keren terus ya!,youtube
+198,DKI Jakarta,Jakarta Timur,Male,28,Worker,21,23,Vtuber terbaik!,youtube
+199,DKI Jakarta,Jakarta Utara,Female,22,Worker,20,22,Konten keren terus ya!,youtube
+200,DKI Jakarta,Jakarta Barat,Female,17,Worker,20,22,DKI Jakarta selalu support!,youtube
+201,DKI Jakarta,Jakarta Timur,Female,24,Student,22,1,Suka banget kontennya!,youtube
+202,DKI Jakarta,Jakarta Selatan,Male,24,Student,21,0,Salam dari DKI Jakarta!,youtube
+203,DKI Jakarta,Jakarta Selatan,Male,22,Worker,21,22,DKI Jakarta selalu support!,youtube
+204,DKI Jakarta,Jakarta Timur,Male,20,Student,20,22,Keep streaming!,youtube
+205,DKI Jakarta,Jakarta Timur,Male,17,Student,20,21,Keep streaming!,youtube
+206,DKI Jakarta,Jakarta Utara,Female,20,Worker,23,2,Keep streaming!,youtube
+207,DKI Jakarta,Jakarta Timur,Male,22,Worker,21,23,Keep streaming!,youtube
+208,DKI Jakarta,Jakarta Selatan,Male,21,Worker,21,0,Konten keren terus ya!,youtube
+209,DKI Jakarta,Jakarta Barat,Male,26,Student,21,22,Suka banget kontennya!,youtube
+210,DKI Jakarta,Jakarta Timur,Male,23,Student,20,21,DKI Jakarta hadir!,youtube
+211,DKI Jakarta,Jakarta Utara,Female,17,Student,19,23,Vtuber terbaik!,youtube
+212,DKI Jakarta,Jakarta Timur,Male,16,Student,23,1,DKI Jakarta hadir!,youtube
+213,DKI Jakarta,Jakarta Barat,Male,22,Student,0,2,Represent DKI Jakarta!,youtube
+214,DKI Jakarta,Jakarta Timur,Female,20,Student,19,22,Salam dari DKI Jakarta!,youtube
+215,DKI Jakarta,Jakarta Pusat,Female,23,Student,23,2,Represent DKI Jakarta!,youtube
+216,DKI Jakarta,Jakarta Pusat,Male,22,Student,0,4,Viewer dari DKI Jakarta!,youtube
+217,DKI Jakarta,Jakarta Selatan,Female,20,Student,23,0,DKI Jakarta selalu support!,youtube
+218,DKI Jakarta,Jakarta Selatan,Male,17,Worker,23,1,Konten keren terus ya!,youtube
+219,DKI Jakarta,Jakarta Utara,Male,14,Worker,20,21,Terus berkarya!,youtube
+220,DKI Jakarta,Jakarta Barat,Male,21,Worker,23,0,Nonton dari DKI Jakarta!,youtube
+221,DKI Jakarta,Jakarta Timur,Male,16,Worker,21,23,Keep streaming!,youtube
+222,DKI Jakarta,Jakarta Selatan,Female,17,Student,21,23,Nonton dari DKI Jakarta!,youtube
+223,DKI Jakarta,Jakarta Pusat,Male,21,Student,0,3,Vtuber terbaik!,youtube
+224,DKI Jakarta,Jakarta Barat,Female,21,Student,23,1,Nonton dari DKI Jakarta!,youtube
+225,DKI Jakarta,Jakarta Timur,Male,16,Student,22,1,Nonton dari DKI Jakarta!,youtube
+226,DKI Jakarta,Jakarta Timur,Male,25,Student,20,23,Terus berkarya!,youtube
+227,DKI Jakarta,Jakarta Barat,Male,25,Student,20,22,Vtuber terbaik!,youtube
+228,DKI Jakarta,Jakarta Timur,Female,23,Student,23,1,Terus berkarya!,youtube
+229,DKI Jakarta,Jakarta Pusat,Male,23,Student,23,1,Salam dari DKI Jakarta!,youtube
+230,DKI Jakarta,Jakarta Utara,Female,23,Student,22,0,Suka banget kontennya!,youtube
+231,DKI Jakarta,Jakarta Selatan,Male,36,Student,21,0,Konten keren terus ya!,youtube
+232,DKI Jakarta,Jakarta Utara,Male,24,Worker,23,1,Terus berkarya!,youtube
+233,DKI Jakarta,Jakarta Selatan,Female,23,Worker,20,22,Nonton dari DKI Jakarta!,youtube
+234,DKI Jakarta,Jakarta Selatan,Male,17,Student,21,23,Terus berkarya!,youtube
+235,DKI Jakarta,Jakarta Pusat,Male,20,Worker,19,21,Nonton dari DKI Jakarta!,youtube
+236,DKI Jakarta,Jakarta Utara,Male,30,Student,20,22,Represent DKI Jakarta!,youtube
+237,DKI Jakarta,Jakarta Utara,Male,13,Student,21,23,Represent DKI Jakarta!,youtube
+238,DKI Jakarta,Jakarta Selatan,Male,19,Student,19,21,Nonton dari DKI Jakarta!,youtube
+239,DKI Jakarta,Jakarta Selatan,Male,25,Student,21,0,DKI Jakarta selalu support!,youtube
+240,DKI Jakarta,Jakarta Utara,Male,18,Student,21,0,Vtuber terbaik!,youtube
+241,DKI Jakarta,Jakarta Selatan,Male,23,Student,19,20,Represent DKI Jakarta!,youtube
+242,DKI Jakarta,Jakarta Barat,Male,21,Student,21,23,Viewer dari DKI Jakarta!,youtube
+243,DKI Jakarta,Jakarta Selatan,Female,18,Worker,21,0,Suka banget kontennya!,youtube
+244,DKI Jakarta,Jakarta Utara,Female,13,Student,22,1,Salam dari DKI Jakarta!,youtube
+245,DKI Jakarta,Jakarta Pusat,Male,21,Student,20,21,Salam dari DKI Jakarta!,youtube
+246,DKI Jakarta,Jakarta Timur,Female,17,Student,19,22,Konten keren terus ya!,youtube
+247,DKI Jakarta,Jakarta Selatan,Male,20,Worker,0,1,Vtuber terbaik!,youtube
+248,DKI Jakarta,Jakarta Utara,Female,23,Student,20,22,Keep streaming!,youtube
+249,DKI Jakarta,Jakarta Utara,Male,24,Worker,20,22,Keep streaming!,youtube
+250,DKI Jakarta,Jakarta Timur,Male,19,Student,21,0,Salam dari DKI Jakarta!,youtube
+251,DKI Jakarta,Jakarta Pusat,Male,18,Student,22,2,DKI Jakarta selalu support!,youtube
+252,DKI Jakarta,Jakarta Selatan,Male,15,Student,0,1,DKI Jakarta hadir!,youtube
+253,DKI Jakarta,Jakarta Utara,Male,24,Student,22,0,Konten keren terus ya!,youtube
+254,DKI Jakarta,Jakarta Timur,Male,29,Student,20,23,Nonton dari DKI Jakarta!,youtube
+255,DKI Jakarta,Jakarta Utara,Male,25,Worker,20,23,Suka banget kontennya!,youtube
+256,DKI Jakarta,Jakarta Selatan,Female,26,Student,19,20,Suka banget kontennya!,youtube
+257,DKI Jakarta,Jakarta Pusat,Male,18,Student,19,20,DKI Jakarta hadir!,youtube
+258,DKI Jakarta,Jakarta Barat,Female,22,Worker,21,0,Konten keren terus ya!,youtube
+259,DKI Jakarta,Jakarta Barat,Male,24,Worker,19,22,Semangat terus!,youtube
+260,DKI Jakarta,Jakarta Timur,Male,13,Student,20,22,Terus berkarya!,youtube
+261,DKI Jakarta,Jakarta Utara,Male,16,Student,20,21,Vtuber terbaik!,youtube
+262,DKI Jakarta,Jakarta Barat,Female,27,Worker,21,0,Vtuber terbaik!,youtube
+263,DKI Jakarta,Jakarta Timur,Male,15,Worker,19,21,Salam dari DKI Jakarta!,youtube
+264,DKI Jakarta,Jakarta Timur,Male,26,Worker,21,0,Nonton dari DKI Jakarta!,youtube
+265,DKI Jakarta,Jakarta Pusat,Male,15,Student,23,1,DKI Jakarta hadir!,youtube
+266,DKI Jakarta,Jakarta Timur,Male,17,Worker,19,21,Semangat terus!,youtube
+267,DKI Jakarta,Jakarta Pusat,Male,22,Student,21,23,Keep streaming!,youtube
+268,DKI Jakarta,Jakarta Utara,Female,21,Worker,23,0,Konten keren terus ya!,youtube
+269,DKI Jakarta,Jakarta Timur,Male,19,Student,21,23,Suka banget kontennya!,youtube
+270,DKI Jakarta,Jakarta Selatan,Male,27,Student,21,23,Salam dari DKI Jakarta!,youtube
+271,DKI Jakarta,Jakarta Utara,Male,16,Worker,21,22,DKI Jakarta selalu support!,youtube
+272,DKI Jakarta,Jakarta Timur,Male,20,Student,0,1,Nonton dari DKI Jakarta!,youtube
+273,DKI Jakarta,Jakarta Pusat,Male,23,Worker,23,0,Suka banget kontennya!,youtube
+274,DKI Jakarta,Jakarta Utara,Female,22,Student,19,22,Terus berkarya!,youtube
+275,DKI Jakarta,Jakarta Selatan,Male,18,Worker,20,0,Konten keren terus ya!,youtube
+276,DKI Jakarta,Jakarta Utara,Male,18,Student,19,23,Terus berkarya!,youtube
+277,DKI Jakarta,Jakarta Timur,Female,24,Worker,21,23,Represent DKI Jakarta!,youtube
+278,DKI Jakarta,Jakarta Barat,Female,24,Student,22,1,Terus berkarya!,youtube
+279,DKI Jakarta,Jakarta Timur,Male,22,Worker,22,2,DKI Jakarta hadir!,youtube
+280,DKI Jakarta,Jakarta Utara,Male,17,Student,22,0,Keep streaming!,youtube
+281,DKI Jakarta,Jakarta Selatan,Male,18,Student,22,23,Vtuber terbaik!,youtube
+282,DKI Jakarta,Jakarta Barat,Male,20,Worker,20,22,Terus berkarya!,youtube
+283,DKI Jakarta,Jakarta Selatan,Male,21,Worker,22,0,Konten keren terus ya!,youtube
+284,DKI Jakarta,Jakarta Barat,Female,23,Student,23,3,Nonton dari DKI Jakarta!,youtube
+285,DKI Jakarta,Jakarta Timur,Female,20,Student,20,22,Viewer dari DKI Jakarta!,youtube
+286,DKI Jakarta,Jakarta Selatan,Male,24,Student,19,22,Nonton dari DKI Jakarta!,youtube
+287,DKI Jakarta,Jakarta Timur,Male,24,Worker,23,1,Suka banget kontennya!,youtube
+288,DKI Jakarta,Jakarta Utara,Male,26,Student,20,23,Keep streaming!,youtube
+289,DKI Jakarta,Jakarta Timur,Female,21,Worker,23,2,Semangat terus!,youtube
+290,DKI Jakarta,Jakarta Barat,Male,22,Student,0,3,DKI Jakarta selalu support!,youtube
+291,DKI Jakarta,Jakarta Pusat,Male,20,Student,21,22,Konten keren terus ya!,youtube
+292,DKI Jakarta,Jakarta Barat,Male,17,Student,20,21,Viewer dari DKI Jakarta!,youtube
+293,DKI Jakarta,Jakarta Utara,Male,29,Student,20,21,Keep streaming!,youtube
+294,DKI Jakarta,Jakarta Pusat,Male,25,Worker,22,23,Vtuber terbaik!,youtube
+295,DKI Jakarta,Jakarta Utara,Female,24,Worker,22,0,DKI Jakarta hadir!,youtube
+296,DKI Jakarta,Jakarta Pusat,Male,20,Worker,19,21,Konten keren terus ya!,youtube
+297,DKI Jakarta,Jakarta Timur,Female,17,Worker,21,22,Represent DKI Jakarta!,youtube
+298,DKI Jakarta,Jakarta Barat,Female,24,Student,20,0,Konten keren terus ya!,youtube
+299,DKI Jakarta,Jakarta Timur,Female,20,Student,19,21,Nonton dari DKI Jakarta!,youtube
+300,DKI Jakarta,Jakarta Barat,Male,22,Worker,21,23,Viewer dari DKI Jakarta!,youtube
+301,DKI Jakarta,Jakarta Utara,Female,18,Worker,19,21,Suka banget kontennya!,youtube
+302,DKI Jakarta,Jakarta Timur,Female,21,Worker,19,23,Salam dari DKI Jakarta!,youtube
+303,DKI Jakarta,Jakarta Selatan,Female,18,Student,22,1,Suka banget kontennya!,youtube
+304,DKI Jakarta,Jakarta Selatan,Male,19,Student,19,22,Suka banget kontennya!,youtube
+305,DKI Jakarta,Jakarta Timur,Male,21,Worker,0,1,Viewer dari DKI Jakarta!,youtube
+306,DKI Jakarta,Jakarta Barat,Male,15,Worker,22,23,Represent DKI Jakarta!,youtube
+307,DKI Jakarta,Jakarta Utara,Male,15,Student,23,0,Represent DKI Jakarta!,youtube
+308,DKI Jakarta,Jakarta Barat,Male,18,Worker,22,1,Konten keren terus ya!,youtube
+309,DKI Jakarta,Jakarta Pusat,Female,20,Student,21,0,Konten keren terus ya!,youtube
+310,DKI Jakarta,Jakarta Timur,Female,24,Student,19,23,Semangat terus!,youtube
+311,DKI Jakarta,Jakarta Utara,Male,20,Worker,21,22,Nonton dari DKI Jakarta!,youtube
+312,DKI Jakarta,Jakarta Utara,Male,20,Worker,19,22,Keep streaming!,youtube
+313,DKI Jakarta,Jakarta Selatan,Female,19,Worker,19,20,Konten keren terus ya!,youtube
+314,DKI Jakarta,Jakarta Utara,Male,22,Worker,22,0,DKI Jakarta selalu support!,youtube
+315,DKI Jakarta,Jakarta Barat,Male,17,Worker,21,23,Suka banget kontennya!,youtube
+316,DKI Jakarta,Jakarta Barat,Male,20,Student,20,0,Konten keren terus ya!,youtube
+317,DKI Jakarta,Jakarta Timur,Male,22,Student,23,1,Konten keren terus ya!,youtube
+318,DKI Jakarta,Jakarta Utara,Male,21,Worker,19,22,Keep streaming!,youtube
+319,DKI Jakarta,Jakarta Pusat,Male,21,Worker,21,0,Konten keren terus ya!,youtube
+320,DKI Jakarta,Jakarta Barat,Male,21,Worker,21,23,DKI Jakarta selalu support!,youtube
+321,DKI Jakarta,Jakarta Pusat,Male,22,Worker,21,0,Suka banget kontennya!,youtube
+322,DKI Jakarta,Jakarta Pusat,Male,29,Worker,21,0,Keep streaming!,youtube
+323,DKI Jakarta,Jakarta Timur,Male,17,Worker,23,3,Nonton dari DKI Jakarta!,youtube
+324,DKI Jakarta,Jakarta Pusat,Male,29,Worker,20,22,Viewer dari DKI Jakarta!,youtube
+325,DKI Jakarta,Jakarta Utara,Female,17,Student,20,21,DKI Jakarta selalu support!,youtube
+326,DKI Jakarta,Jakarta Selatan,Male,13,Worker,21,23,DKI Jakarta selalu support!,youtube
+327,DKI Jakarta,Jakarta Pusat,Male,18,Student,19,23,Salam dari DKI Jakarta!,youtube
+328,DKI Jakarta,Jakarta Barat,Female,22,Student,20,21,DKI Jakarta hadir!,youtube
+329,DKI Jakarta,Jakarta Barat,Male,28,Worker,22,23,DKI Jakarta selalu support!,youtube
+330,DKI Jakarta,Jakarta Selatan,Male,17,Student,23,1,Terus berkarya!,youtube
+331,DKI Jakarta,Jakarta Timur,Male,22,Student,22,23,Represent DKI Jakarta!,youtube
+332,DKI Jakarta,Jakarta Utara,Male,15,Student,23,1,Viewer dari DKI Jakarta!,youtube
+333,DKI Jakarta,Jakarta Barat,Male,28,Worker,23,2,Konten keren terus ya!,youtube
+334,DKI Jakarta,Jakarta Timur,Male,25,Student,0,4,Keep streaming!,youtube
+335,DKI Jakarta,Jakarta Pusat,Male,19,Student,20,0,Nonton dari DKI Jakarta!,youtube
+336,DKI Jakarta,Jakarta Utara,Male,14,Student,0,1,Suka banget kontennya!,youtube
+337,DKI Jakarta,Jakarta Utara,Male,26,Worker,22,0,Semangat terus!,youtube
+338,DKI Jakarta,Jakarta Pusat,Male,20,Student,20,22,Suka banget kontennya!,youtube
+339,DKI Jakarta,Jakarta Selatan,Male,25,Worker,20,23,Keep streaming!,youtube
+340,DKI Jakarta,Jakarta Timur,Male,21,Student,22,0,Keep streaming!,youtube
+341,DKI Jakarta,Jakarta Barat,Male,21,Student,23,1,Represent DKI Jakarta!,youtube
+342,DKI Jakarta,Jakarta Pusat,Female,19,Worker,21,23,Nonton dari DKI Jakarta!,youtube
+343,DKI Jakarta,Jakarta Selatan,Male,23,Student,19,22,Semangat terus!,youtube
+344,DKI Jakarta,Jakarta Pusat,Male,21,Worker,20,22,Keep streaming!,youtube
+345,DKI Jakarta,Jakarta Pusat,Male,23,Worker,21,0,Salam dari DKI Jakarta!,youtube
+346,DKI Jakarta,Jakarta Selatan,Male,14,Student,19,21,DKI Jakarta hadir!,youtube
+347,DKI Jakarta,Jakarta Utara,Male,26,Student,21,22,Represent DKI Jakarta!,youtube
+348,DKI Jakarta,Jakarta Timur,Male,27,Student,21,23,Semangat terus!,youtube
+349,DKI Jakarta,Jakarta Utara,Female,21,Worker,23,2,Viewer dari DKI Jakarta!,youtube
+350,DKI Jakarta,Jakarta Pusat,Male,29,Worker,23,2,DKI Jakarta hadir!,youtube
+351,DKI Jakarta,Jakarta Barat,Male,28,Worker,20,0,Viewer dari DKI Jakarta!,youtube
+352,DKI Jakarta,Jakarta Pusat,Male,23,Student,22,1,DKI Jakarta hadir!,youtube
+353,DKI Jakarta,Jakarta Utara,Male,26,Worker,20,21,DKI Jakarta selalu support!,youtube
+354,DKI Jakarta,Jakarta Barat,Male,25,Student,20,21,Terus berkarya!,youtube
+355,DKI Jakarta,Jakarta Pusat,Male,13,Worker,20,22,DKI Jakarta hadir!,youtube
+356,DKI Jakarta,Jakarta Barat,Male,19,Worker,21,0,Konten keren terus ya!,youtube
+357,DKI Jakarta,Jakarta Barat,Male,23,Student,22,0,DKI Jakarta selalu support!,youtube
+358,DKI Jakarta,Jakarta Barat,Female,27,Student,23,1,Suka banget kontennya!,youtube
+359,DKI Jakarta,Jakarta Pusat,Male,15,Student,23,2,DKI Jakarta selalu support!,youtube
+360,DKI Jakarta,Jakarta Barat,Male,14,Worker,21,22,DKI Jakarta selalu support!,youtube
+361,DKI Jakarta,Jakarta Pusat,Female,20,Worker,0,2,Viewer dari DKI Jakarta!,youtube
+362,DKI Jakarta,Jakarta Utara,Male,13,Student,21,22,Terus berkarya!,youtube
+363,DKI Jakarta,Jakarta Barat,Male,20,Worker,20,23,Nonton dari DKI Jakarta!,youtube
+364,DKI Jakarta,Jakarta Timur,Male,22,Worker,20,22,Nonton dari DKI Jakarta!,youtube
+365,DKI Jakarta,Jakarta Timur,Female,17,Worker,20,22,Salam dari DKI Jakarta!,youtube
+366,DKI Jakarta,Jakarta Utara,Male,20,Student,21,23,Konten keren terus ya!,youtube
+367,DKI Jakarta,Jakarta Pusat,Female,24,Worker,20,21,DKI Jakarta selalu support!,youtube
+368,DKI Jakarta,Jakarta Barat,Male,18,Student,20,21,Terus berkarya!,youtube
+369,DKI Jakarta,Jakarta Utara,Male,17,Student,19,20,Suka banget kontennya!,youtube
+370,DKI Jakarta,Jakarta Barat,Male,20,Student,20,0,Represent DKI Jakarta!,youtube
+371,DKI Jakarta,Jakarta Selatan,Male,16,Worker,20,23,Nonton dari DKI Jakarta!,youtube
+372,DKI Jakarta,Jakarta Pusat,Male,28,Student,19,22,DKI Jakarta hadir!,youtube
+373,DKI Jakarta,Jakarta Utara,Female,21,Worker,22,0,Vtuber terbaik!,youtube
+374,DKI Jakarta,Jakarta Utara,Male,18,Worker,23,1,Represent DKI Jakarta!,youtube
+375,DKI Jakarta,Jakarta Pusat,Female,21,Worker,23,0,Konten keren terus ya!,youtube
+376,DKI Jakarta,Jakarta Pusat,Male,20,Student,22,0,Represent DKI Jakarta!,youtube
+377,DKI Jakarta,Jakarta Pusat,Male,20,Student,22,0,Represent DKI Jakarta!,youtube
+378,DKI Jakarta,Jakarta Pusat,Female,18,Student,20,23,Vtuber terbaik!,youtube
+379,DKI Jakarta,Jakarta Pusat,Male,18,Student,21,23,Konten keren terus ya!,youtube
+380,DKI Jakarta,Jakarta Utara,Female,14,Worker,21,22,Konten keren terus ya!,youtube
+381,DKI Jakarta,Jakarta Barat,Male,26,Worker,22,0,Terus berkarya!,youtube
+382,DKI Jakarta,Jakarta Timur,Male,23,Worker,21,22,Konten keren terus ya!,youtube
+383,DKI Jakarta,Jakarta Barat,Male,22,Worker,21,23,Keep streaming!,youtube
+384,DKI Jakarta,Jakarta Barat,Male,20,Student,21,23,Nonton dari DKI Jakarta!,youtube
+385,DKI Jakarta,Jakarta Barat,Male,17,Worker,20,22,Terus berkarya!,youtube
+386,DKI Jakarta,Jakarta Selatan,Female,17,Worker,19,22,Represent DKI Jakarta!,youtube
+387,DKI Jakarta,Jakarta Barat,Male,15,Worker,20,0,Suka banget kontennya!,youtube
+388,DKI Jakarta,Jakarta Pusat,Male,18,Student,19,21,Salam dari DKI Jakarta!,youtube
+389,DKI Jakarta,Jakarta Selatan,Male,16,Worker,23,1,Suka banget kontennya!,youtube
+390,DKI Jakarta,Jakarta Utara,Male,27,Worker,22,2,Nonton dari DKI Jakarta!,youtube
+391,DKI Jakarta,Jakarta Barat,Male,24,Student,21,23,Salam dari DKI Jakarta!,youtube
+392,DKI Jakarta,Jakarta Timur,Male,21,Student,21,1,DKI Jakarta selalu support!,youtube
+393,DKI Jakarta,Jakarta Pusat,Male,17,Student,22,23,Semangat terus!,youtube
+394,DKI Jakarta,Jakarta Pusat,Female,16,Worker,20,23,Suka banget kontennya!,youtube
+395,DKI Jakarta,Jakarta Timur,Male,20,Worker,20,21,DKI Jakarta hadir!,youtube
+396,DKI Jakarta,Jakarta Selatan,Male,24,Worker,20,23,Terus berkarya!,youtube
+397,DKI Jakarta,Jakarta Selatan,Male,28,Student,0,3,Konten keren terus ya!,youtube
+398,DKI Jakarta,Jakarta Selatan,Male,15,Worker,19,22,Semangat terus!,youtube
+399,DKI Jakarta,Jakarta Selatan,Male,23,Worker,20,23,Represent DKI Jakarta!,youtube
+400,DKI Jakarta,Jakarta Barat,Male,18,Worker,20,22,Keep streaming!,youtube
+401,DKI Jakarta,Jakarta Selatan,Male,19,Student,20,21,Vtuber terbaik!,youtube
+402,DKI Jakarta,Jakarta Barat,Male,21,Student,20,23,Semangat terus!,youtube
+403,DKI Jakarta,Jakarta Pusat,Female,17,Worker,0,2,Salam dari DKI Jakarta!,youtube
+404,DKI Jakarta,Jakarta Utara,Male,20,Student,0,2,DKI Jakarta hadir!,youtube
+405,DKI Jakarta,Jakarta Timur,Female,17,Student,23,3,Represent DKI Jakarta!,youtube
+406,DKI Jakarta,Jakarta Barat,Female,18,Student,20,22,DKI Jakarta selalu support!,youtube
+407,DKI Jakarta,Jakarta Barat,Male,24,Student,21,23,Nonton dari DKI Jakarta!,youtube
+408,DKI Jakarta,Jakarta Selatan,Female,21,Worker,21,0,Viewer dari DKI Jakarta!,youtube
+409,DKI Jakarta,Jakarta Selatan,Male,24,Worker,20,23,Terus berkarya!,youtube
+410,DKI Jakarta,Jakarta Pusat,Male,18,Worker,20,0,Salam dari DKI Jakarta!,youtube
+411,DKI Jakarta,Jakarta Utara,Male,23,Student,20,0,Semangat terus!,youtube
+412,DKI Jakarta,Jakarta Pusat,Male,14,Worker,19,21,Viewer dari DKI Jakarta!,youtube
+413,DKI Jakarta,Jakarta Pusat,Male,21,Worker,21,0,Nonton dari DKI Jakarta!,youtube
+414,DKI Jakarta,Jakarta Utara,Female,23,Student,20,22,Vtuber terbaik!,youtube
+415,DKI Jakarta,Jakarta Utara,Male,14,Student,21,23,Represent DKI Jakarta!,youtube
+416,DKI Jakarta,Jakarta Pusat,Male,18,Student,20,23,Semangat terus!,youtube
+417,DKI Jakarta,Jakarta Utara,Female,21,Student,19,21,Semangat terus!,youtube
+418,DKI Jakarta,Jakarta Timur,Male,25,Student,20,22,Represent DKI Jakarta!,youtube
+419,DKI Jakarta,Jakarta Barat,Male,18,Student,21,0,DKI Jakarta selalu support!,youtube
+420,DKI Jakarta,Jakarta Barat,Male,23,Worker,21,0,DKI Jakarta hadir!,youtube
+421,DKI Jakarta,Jakarta Selatan,Male,26,Student,20,23,Suka banget kontennya!,youtube
+422,DKI Jakarta,Jakarta Selatan,Male,23,Worker,22,1,Nonton dari DKI Jakarta!,youtube
+423,DKI Jakarta,Jakarta Selatan,Male,20,Worker,0,1,Viewer dari DKI Jakarta!,youtube
+424,DKI Jakarta,Jakarta Barat,Female,22,Worker,23,1,Semangat terus!,youtube
+425,DKI Jakarta,Jakarta Pusat,Male,18,Worker,20,22,Suka banget kontennya!,youtube
+426,DKI Jakarta,Jakarta Barat,Male,21,Student,21,0,Salam dari DKI Jakarta!,youtube
+427,DKI Jakarta,Jakarta Timur,Male,20,Student,22,1,Keep streaming!,youtube
+428,DKI Jakarta,Jakarta Barat,Male,22,Student,20,23,Semangat terus!,youtube
+429,DKI Jakarta,Jakarta Timur,Male,19,Student,20,22,Vtuber terbaik!,youtube
+430,DKI Jakarta,Jakarta Pusat,Female,22,Student,21,23,Nonton dari DKI Jakarta!,youtube
+431,DKI Jakarta,Jakarta Timur,Male,19,Student,21,23,DKI Jakarta hadir!,youtube
+432,DKI Jakarta,Jakarta Barat,Male,24,Student,20,21,Vtuber terbaik!,youtube
+433,DKI Jakarta,Jakarta Pusat,Female,19,Student,22,2,Nonton dari DKI Jakarta!,youtube
+434,DKI Jakarta,Jakarta Selatan,Male,13,Student,21,23,Viewer dari DKI Jakarta!,youtube
+435,DKI Jakarta,Jakarta Pusat,Male,16,Worker,20,23,DKI Jakarta hadir!,youtube
+436,DKI Jakarta,Jakarta Timur,Male,21,Worker,20,22,Vtuber terbaik!,youtube
+437,DKI Jakarta,Jakarta Barat,Male,27,Student,23,1,Represent DKI Jakarta!,youtube
+438,DKI Jakarta,Jakarta Barat,Male,24,Student,23,0,Keep streaming!,youtube
+439,DKI Jakarta,Jakarta Pusat,Male,13,Student,21,1,Terus berkarya!,youtube
+440,DKI Jakarta,Jakarta Pusat,Male,15,Student,19,23,Salam dari DKI Jakarta!,youtube
+441,DKI Jakarta,Jakarta Utara,Female,25,Worker,22,0,Salam dari DKI Jakarta!,youtube
+442,DKI Jakarta,Jakarta Selatan,Male,23,Worker,23,1,Nonton dari DKI Jakarta!,youtube
+443,DKI Jakarta,Jakarta Pusat,Male,30,Worker,22,0,Suka banget kontennya!,youtube
+444,DKI Jakarta,Jakarta Pusat,Female,19,Worker,20,23,Semangat terus!,youtube
+445,DKI Jakarta,Jakarta Selatan,Male,17,Worker,22,1,Represent DKI Jakarta!,youtube
+446,DKI Jakarta,Jakarta Selatan,Male,21,Student,22,0,DKI Jakarta selalu support!,youtube
+447,DKI Jakarta,Jakarta Barat,Female,19,Student,23,1,Konten keren terus ya!,youtube
+448,DKI Jakarta,Jakarta Pusat,Female,25,Worker,19,22,Nonton dari DKI Jakarta!,youtube
+449,DKI Jakarta,Jakarta Utara,Male,18,Worker,22,1,Keep streaming!,youtube
+450,DKI Jakarta,Jakarta Barat,Female,19,Worker,22,23,Suka banget kontennya!,youtube
+451,DKI Jakarta,Jakarta Selatan,Male,17,Student,19,21,Semangat terus!,youtube
+452,DKI Jakarta,Jakarta Timur,Male,24,Student,22,2,Semangat terus!,youtube
+453,DKI Jakarta,Jakarta Selatan,Female,17,Student,21,22,Salam dari DKI Jakarta!,youtube
+454,DKI Jakarta,Jakarta Barat,Male,22,Student,20,23,Semangat terus!,youtube
+455,DKI Jakarta,Jakarta Utara,Female,28,Worker,20,22,Salam dari DKI Jakarta!,youtube
+456,DKI Jakarta,Jakarta Utara,Male,13,Student,21,23,Suka banget kontennya!,youtube
+457,DKI Jakarta,Jakarta Utara,Male,26,Worker,23,0,Terus berkarya!,youtube
+458,DKI Jakarta,Jakarta Pusat,Female,22,Student,21,1,Viewer dari DKI Jakarta!,youtube
+459,DKI Jakarta,Jakarta Barat,Male,16,Worker,21,0,Suka banget kontennya!,youtube
+460,DKI Jakarta,Jakarta Pusat,Male,21,Worker,21,0,Konten keren terus ya!,youtube
+461,DKI Jakarta,Jakarta Barat,Female,23,Student,23,2,Konten keren terus ya!,youtube
+462,DKI Jakarta,Jakarta Timur,Male,17,Worker,21,23,Nonton dari DKI Jakarta!,youtube
+463,DKI Jakarta,Jakarta Timur,Male,22,Student,21,23,DKI Jakarta selalu support!,youtube
+464,DKI Jakarta,Jakarta Barat,Male,27,Student,23,2,Terus berkarya!,youtube
+465,DKI Jakarta,Jakarta Barat,Female,18,Student,23,1,Semangat terus!,youtube
+466,DKI Jakarta,Jakarta Barat,Male,17,Student,0,2,Konten keren terus ya!,youtube
+467,DKI Jakarta,Jakarta Timur,Male,20,Student,22,0,Vtuber terbaik!,youtube
+468,DKI Jakarta,Jakarta Barat,Male,21,Worker,21,1,Vtuber terbaik!,youtube
+469,DKI Jakarta,Jakarta Utara,Male,25,Student,20,21,Konten keren terus ya!,youtube
+470,DKI Jakarta,Jakarta Timur,Male,20,Student,22,23,Semangat terus!,youtube
+471,DKI Jakarta,Jakarta Pusat,Male,19,Student,19,21,Viewer dari DKI Jakarta!,youtube
+472,DKI Jakarta,Jakarta Timur,Male,16,Worker,21,0,Salam dari DKI Jakarta!,youtube
+473,DKI Jakarta,Jakarta Barat,Male,14,Worker,23,1,Terus berkarya!,youtube
+474,DKI Jakarta,Jakarta Pusat,Male,15,Student,22,23,Vtuber terbaik!,youtube
+475,DKI Jakarta,Jakarta Timur,Male,15,Student,21,23,Semangat terus!,youtube
+476,DKI Jakarta,Jakarta Utara,Male,19,Student,19,22,Suka banget kontennya!,youtube
+477,DKI Jakarta,Jakarta Barat,Male,14,Student,20,21,Represent DKI Jakarta!,youtube
+478,DKI Jakarta,Jakarta Utara,Male,13,Student,23,0,Semangat terus!,youtube
+479,DKI Jakarta,Jakarta Barat,Male,20,Student,20,21,Konten keren terus ya!,youtube
+480,DKI Jakarta,Jakarta Selatan,Male,28,Student,19,22,Represent DKI Jakarta!,youtube
+481,DKI Jakarta,Jakarta Utara,Female,25,Student,21,23,Terus berkarya!,youtube
+482,Jawa Barat,Cirebon,Female,19,Worker,19,21,Semangat terus!,youtube
+483,Jawa Barat,Bandung,Male,16,Worker,0,2,Represent Jawa Barat!,youtube
+484,Jawa Barat,Depok,Male,31,Student,19,21,Terus berkarya!,youtube
+485,Jawa Barat,Depok,Female,21,Worker,22,0,Suka banget kontennya!,youtube
+486,Jawa Barat,Tasikmalaya,Female,21,Worker,20,22,Viewer dari Jawa Barat!,youtube
+487,Jawa Barat,Cirebon,Male,20,Student,20,23,Keep streaming!,youtube
+488,Jawa Barat,Tasikmalaya,Male,20,Worker,21,22,Nonton dari Jawa Barat!,youtube
+489,Jawa Barat,Bogor,Male,18,Student,19,21,Terus berkarya!,youtube
+490,Jawa Barat,Bogor,Male,19,Student,21,0,Terus berkarya!,youtube
+491,Jawa Barat,Cirebon,Male,27,Worker,20,22,Represent Jawa Barat!,youtube
+492,Jawa Barat,Bekasi,Female,25,Student,20,22,Konten keren terus ya!,youtube
+493,Jawa Barat,Tasikmalaya,Female,13,Student,20,22,Suka banget kontennya!,youtube
+494,Jawa Barat,Bekasi,Male,15,Worker,21,0,Jawa Barat selalu support!,youtube
+495,Jawa Barat,Depok,Male,17,Student,20,0,Salam dari Jawa Barat!,youtube
+496,Jawa Barat,Bogor,Male,24,Worker,19,21,Represent Jawa Barat!,youtube
+497,Jawa Barat,Depok,Male,26,Worker,20,23,Nonton dari Jawa Barat!,youtube
+498,Jawa Barat,Bogor,Male,23,Student,19,22,Represent Jawa Barat!,youtube
+499,Jawa Barat,Depok,Female,16,Worker,19,21,Terus berkarya!,youtube
+500,Jawa Barat,Tasikmalaya,Male,18,Worker,21,0,Konten keren terus ya!,youtube
+501,Jawa Barat,Cirebon,Male,22,Worker,20,22,Terus berkarya!,youtube
+502,Jawa Barat,Bekasi,Male,20,Student,22,1,Jawa Barat selalu support!,youtube
+503,Jawa Barat,Bekasi,Male,19,Worker,23,1,Viewer dari Jawa Barat!,youtube
+504,Jawa Barat,Tasikmalaya,Male,19,Student,21,23,Jawa Barat hadir!,youtube
+505,Jawa Barat,Bogor,Male,25,Worker,20,0,Suka banget kontennya!,youtube
+506,Jawa Barat,Bekasi,Female,23,Worker,19,21,Salam dari Jawa Barat!,youtube
+507,Jawa Barat,Bandung,Male,19,Worker,19,23,Suka banget kontennya!,youtube
+508,Jawa Barat,Bandung,Male,22,Student,20,23,Jawa Barat hadir!,youtube
+509,Jawa Barat,Bandung,Male,15,Worker,23,3,Keep streaming!,youtube
+510,Jawa Barat,Depok,Female,18,Student,20,23,Viewer dari Jawa Barat!,youtube
+511,Jawa Barat,Depok,Male,25,Worker,20,21,Salam dari Jawa Barat!,youtube
+512,Jawa Barat,Bekasi,Male,14,Worker,21,23,Semangat terus!,youtube
+513,Jawa Barat,Bekasi,Male,23,Student,20,21,Terus berkarya!,youtube
+514,Jawa Barat,Tasikmalaya,Male,13,Student,20,21,Represent Jawa Barat!,youtube
+515,Jawa Barat,Bekasi,Female,27,Worker,23,2,Vtuber terbaik!,youtube
+516,Jawa Barat,Cirebon,Female,18,Worker,23,2,Represent Jawa Barat!,youtube
+517,Jawa Barat,Bekasi,Male,22,Worker,21,22,Konten keren terus ya!,youtube
+518,Jawa Barat,Bekasi,Male,21,Student,20,22,Konten keren terus ya!,youtube
+519,Jawa Barat,Tasikmalaya,Female,21,Worker,19,21,Vtuber terbaik!,youtube
+520,Jawa Barat,Bandung,Male,22,Worker,21,0,Suka banget kontennya!,youtube
+521,Jawa Barat,Cirebon,Male,14,Student,20,22,Terus berkarya!,youtube
+522,Jawa Barat,Depok,Female,21,Worker,0,3,Represent Jawa Barat!,youtube
+523,Jawa Barat,Bekasi,Male,20,Student,21,22,Konten keren terus ya!,youtube
+524,Jawa Barat,Cirebon,Male,18,Worker,19,21,Konten keren terus ya!,youtube
+525,Jawa Barat,Bekasi,Female,17,Worker,23,2,Suka banget kontennya!,youtube
+526,Jawa Barat,Bogor,Female,21,Worker,20,21,Semangat terus!,youtube
+527,Jawa Barat,Bandung,Male,17,Student,21,23,Semangat terus!,youtube
+528,Jawa Barat,Bekasi,Female,25,Student,20,22,Represent Jawa Barat!,youtube
+529,Jawa Barat,Tasikmalaya,Female,22,Student,19,22,Vtuber terbaik!,youtube
+530,Jawa Barat,Bandung,Male,22,Worker,21,23,Konten keren terus ya!,youtube
+531,Jawa Barat,Cirebon,Male,24,Student,21,23,Konten keren terus ya!,youtube
+532,Jawa Barat,Depok,Male,13,Student,21,22,Viewer dari Jawa Barat!,youtube
+533,Jawa Barat,Depok,Male,15,Worker,19,20,Terus berkarya!,youtube
+534,Jawa Barat,Bandung,Male,23,Worker,19,23,Konten keren terus ya!,youtube
+535,Jawa Barat,Tasikmalaya,Male,18,Student,21,0,Terus berkarya!,youtube
+536,Jawa Barat,Bogor,Male,18,Student,20,0,Konten keren terus ya!,youtube
+537,Jawa Barat,Tasikmalaya,Female,15,Worker,20,22,Suka banget kontennya!,youtube
+538,Jawa Barat,Bandung,Female,17,Student,21,0,Jawa Barat hadir!,youtube
+539,Jawa Barat,Bekasi,Female,25,Student,21,22,Viewer dari Jawa Barat!,youtube
+540,Jawa Barat,Tasikmalaya,Female,22,Worker,22,0,Semangat terus!,youtube
+541,Jawa Barat,Bogor,Male,21,Student,20,22,Represent Jawa Barat!,youtube
+542,Jawa Barat,Bandung,Male,18,Student,21,0,Viewer dari Jawa Barat!,youtube
+543,Jawa Barat,Bandung,Female,21,Student,21,0,Jawa Barat selalu support!,youtube
+544,Jawa Barat,Cirebon,Male,25,Student,19,20,Suka banget kontennya!,youtube
+545,Jawa Barat,Bogor,Male,18,Student,19,22,Konten keren terus ya!,youtube
+546,Jawa Barat,Bandung,Male,20,Student,21,0,Jawa Barat hadir!,youtube
+547,Jawa Barat,Tasikmalaya,Male,28,Student,20,23,Vtuber terbaik!,youtube
+548,Jawa Barat,Depok,Male,23,Worker,22,1,Jawa Barat selalu support!,youtube
+549,Jawa Barat,Bekasi,Male,18,Student,21,0,Keep streaming!,youtube
+550,Jawa Barat,Tasikmalaya,Male,23,Student,20,0,Jawa Barat hadir!,youtube
+551,Jawa Barat,Depok,Male,14,Student,19,21,Suka banget kontennya!,youtube
+552,Jawa Barat,Bogor,Male,20,Worker,20,22,Keep streaming!,youtube
+553,Jawa Barat,Bogor,Male,23,Student,21,0,Jawa Barat selalu support!,youtube
+554,Jawa Barat,Bogor,Female,22,Student,22,1,Viewer dari Jawa Barat!,youtube
+555,Jawa Barat,Bekasi,Male,23,Worker,21,23,Keep streaming!,youtube
+556,Jawa Barat,Bogor,Male,24,Student,20,23,Represent Jawa Barat!,youtube
+557,Jawa Barat,Depok,Male,22,Worker,21,22,Keep streaming!,youtube
+558,Jawa Barat,Bekasi,Male,22,Worker,20,23,Vtuber terbaik!,youtube
+559,Jawa Timur,Kediri,Male,21,Worker,21,23,Salam dari Jawa Timur!,youtube
+560,Jawa Timur,Surabaya,Female,16,Student,23,3,Terus berkarya!,youtube
+561,Jawa Timur,Gresik,Female,25,Student,0,2,Terus berkarya!,youtube
+562,Jawa Timur,Kediri,Male,20,Worker,23,1,Keep streaming!,youtube
+563,Jawa Timur,Kediri,Male,23,Worker,22,0,Semangat terus!,youtube
+564,Jawa Timur,Sidoarjo,Female,24,Student,19,22,Represent Jawa Timur!,youtube
+565,Jawa Timur,Gresik,Female,18,Student,21,23,Jawa Timur selalu support!,youtube
+566,Jawa Timur,Gresik,Male,19,Student,19,21,Vtuber terbaik!,youtube
+567,Jawa Timur,Malang,Male,19,Student,21,22,Keep streaming!,youtube
+568,Jawa Timur,Kediri,Male,26,Student,19,21,Salam dari Jawa Timur!,youtube
+569,Jawa Timur,Sidoarjo,Female,17,Student,20,23,Konten keren terus ya!,youtube
+570,Jawa Timur,Gresik,Male,26,Worker,20,21,Konten keren terus ya!,youtube
+571,Jawa Timur,Surabaya,Male,21,Worker,21,1,Semangat terus!,youtube
+572,Jawa Timur,Surabaya,Male,22,Worker,20,0,Viewer dari Jawa Timur!,youtube
+573,Jawa Timur,Malang,Male,24,Worker,19,21,Viewer dari Jawa Timur!,youtube
+574,Jawa Timur,Gresik,Male,21,Student,23,0,Konten keren terus ya!,youtube
+575,Jawa Timur,Sidoarjo,Male,25,Student,22,0,Viewer dari Jawa Timur!,youtube
+576,Jawa Timur,Kediri,Male,18,Worker,21,23,Viewer dari Jawa Timur!,youtube
+577,Jawa Timur,Malang,Male,26,Worker,21,23,Nonton dari Jawa Timur!,youtube
+578,Jawa Timur,Gresik,Female,19,Student,20,22,Semangat terus!,youtube
+579,Jawa Timur,Surabaya,Male,26,Student,22,1,Represent Jawa Timur!,youtube
+580,Jawa Timur,Malang,Female,19,Student,20,22,Salam dari Jawa Timur!,youtube
+581,Jawa Timur,Surabaya,Male,19,Worker,20,23,Nonton dari Jawa Timur!,youtube
+582,Jawa Timur,Surabaya,Male,16,Student,19,21,Terus berkarya!,youtube
+583,Jawa Timur,Kediri,Male,17,Student,19,21,Vtuber terbaik!,youtube
+584,Jawa Timur,Surabaya,Female,20,Worker,20,23,Jawa Timur selalu support!,youtube
+585,Jawa Timur,Sidoarjo,Male,21,Worker,21,0,Salam dari Jawa Timur!,youtube
+586,Jawa Timur,Gresik,Male,24,Student,23,3,Vtuber terbaik!,youtube
+587,Jawa Timur,Surabaya,Male,20,Student,21,0,Jawa Timur selalu support!,youtube
+588,Jawa Timur,Sidoarjo,Male,16,Worker,0,3,Nonton dari Jawa Timur!,youtube
+589,Jawa Timur,Sidoarjo,Male,22,Worker,20,22,Suka banget kontennya!,youtube
+590,Jawa Timur,Malang,Female,21,Student,21,0,Terus berkarya!,youtube
+591,Jawa Timur,Surabaya,Male,22,Student,21,1,Nonton dari Jawa Timur!,youtube
+592,Jawa Timur,Gresik,Male,18,Worker,20,22,Vtuber terbaik!,youtube
+593,Jawa Timur,Kediri,Male,18,Worker,20,21,Konten keren terus ya!,youtube
+594,Jawa Timur,Sidoarjo,Male,18,Student,19,23,Jawa Timur hadir!,youtube
+595,Jawa Timur,Gresik,Male,25,Worker,0,1,Salam dari Jawa Timur!,youtube
+596,Jawa Timur,Malang,Female,26,Worker,21,22,Keep streaming!,youtube
+597,Jawa Timur,Kediri,Male,18,Worker,20,23,Represent Jawa Timur!,youtube
+598,Jawa Timur,Kediri,Male,18,Student,20,22,Salam dari Jawa Timur!,youtube
+599,Jawa Timur,Gresik,Male,23,Student,21,23,Semangat terus!,youtube
+600,Jawa Timur,Gresik,Male,27,Student,19,20,Nonton dari Jawa Timur!,youtube
+601,Jawa Timur,Surabaya,Male,28,Worker,23,2,Salam dari Jawa Timur!,youtube
+602,Jawa Timur,Gresik,Male,18,Worker,23,2,Jawa Timur selalu support!,youtube
+603,Jawa Timur,Malang,Male,19,Student,0,2,Salam dari Jawa Timur!,youtube
+604,Jawa Timur,Sidoarjo,Male,22,Student,21,22,Salam dari Jawa Timur!,youtube
+605,Jawa Timur,Kediri,Male,22,Student,21,22,Jawa Timur selalu support!,youtube
+606,Jawa Timur,Sidoarjo,Male,20,Student,20,23,Nonton dari Jawa Timur!,youtube
+607,Jawa Timur,Gresik,Male,17,Student,20,22,Keep streaming!,youtube
+608,Jawa Timur,Gresik,Female,20,Student,19,21,Jawa Timur hadir!,youtube
+609,Jawa Timur,Sidoarjo,Male,28,Worker,20,23,Represent Jawa Timur!,youtube
+610,Jawa Timur,Sidoarjo,Male,18,Student,23,1,Vtuber terbaik!,youtube
+611,Jawa Timur,Sidoarjo,Female,21,Student,21,23,Represent Jawa Timur!,youtube
+612,Jawa Timur,Gresik,Male,31,Worker,22,0,Jawa Timur hadir!,youtube
+613,Jawa Timur,Sidoarjo,Male,18,Worker,20,0,Terus berkarya!,youtube
+614,Jawa Timur,Surabaya,Male,23,Worker,20,23,Keep streaming!,youtube
+615,Jawa Timur,Kediri,Male,28,Student,23,1,Suka banget kontennya!,youtube
+616,Jawa Timur,Sidoarjo,Male,23,Student,23,1,Vtuber terbaik!,youtube
+617,Jawa Timur,Sidoarjo,Male,25,Student,23,1,Semangat terus!,youtube
+618,Jawa Timur,Gresik,Male,24,Worker,21,0,Vtuber terbaik!,youtube
+619,Jawa Timur,Kediri,Male,23,Student,21,0,Jawa Timur hadir!,youtube
+620,Jawa Timur,Sidoarjo,Male,26,Student,20,0,Represent Jawa Timur!,youtube
+621,Jawa Timur,Kediri,Female,23,Student,23,0,Jawa Timur selalu support!,youtube
+622,Bali,Kuta,Male,20,Student,20,22,Konten keren terus ya!,youtube
+623,Bali,Kuta,Male,21,Student,22,1,Represent Bali!,youtube
+624,Bali,Denpasar,Female,22,Student,22,0,Nonton dari Bali!,youtube
+625,Bali,Ubud,Female,19,Worker,21,23,Konten keren terus ya!,youtube
+626,Bali,Denpasar,Female,21,Student,21,23,Konten keren terus ya!,youtube
+627,Bali,Denpasar,Male,21,Student,20,21,Terus berkarya!,youtube
+628,Bali,Kuta,Male,23,Worker,22,1,Terus berkarya!,youtube
+629,Bali,Gianyar,Male,29,Student,19,20,Konten keren terus ya!,youtube
+630,Bali,Gianyar,Male,21,Student,0,1,Keep streaming!,youtube
+631,Bali,Gianyar,Male,27,Worker,20,21,Keep streaming!,youtube
+632,Bali,Denpasar,Male,23,Student,19,21,Vtuber terbaik!,youtube
+633,Bali,Ubud,Male,21,Worker,23,0,Bali selalu support!,youtube
+634,Bali,Ubud,Male,19,Student,20,23,Vtuber terbaik!,youtube
+635,Bali,Ubud,Male,21,Student,22,23,Konten keren terus ya!,youtube
+636,Bali,Ubud,Male,21,Worker,20,23,Vtuber terbaik!,youtube
+637,Bali,Kuta,Male,18,Worker,21,23,Salam dari Bali!,youtube
+638,Bali,Gianyar,Male,18,Student,22,23,Keep streaming!,youtube
+639,Bali,Gianyar,Male,22,Worker,19,21,Suka banget kontennya!,youtube
+640,Bali,Kuta,Male,27,Worker,21,1,Semangat terus!,youtube
+641,Bali,Gianyar,Male,20,Student,20,21,Vtuber terbaik!,youtube
+642,Bali,Kuta,Male,15,Student,20,21,Bali selalu support!,youtube
+643,Bali,Gianyar,Female,13,Worker,22,0,Keep streaming!,youtube
+644,Bali,Gianyar,Male,16,Student,19,22,Bali hadir!,youtube
+645,Bali,Ubud,Male,23,Student,21,0,Viewer dari Bali!,youtube
+646,Bali,Gianyar,Male,15,Student,0,1,Vtuber terbaik!,youtube
+647,Bali,Denpasar,Male,24,Worker,20,22,Vtuber terbaik!,youtube
+648,Bali,Ubud,Male,23,Worker,20,23,Semangat terus!,youtube
+649,Bali,Kuta,Female,20,Student,21,0,Keep streaming!,youtube
+650,Bali,Ubud,Male,14,Worker,0,3,Viewer dari Bali!,youtube
+651,Bali,Gianyar,Male,18,Student,20,23,Nonton dari Bali!,youtube
+652,Sumatera Utara,Pematang Siantar,Female,20,Student,20,23,Terus berkarya!,youtube
+653,Sumatera Utara,Medan,Male,22,Worker,19,22,Vtuber terbaik!,youtube
+654,Sumatera Utara,Medan,Male,15,Student,23,1,Vtuber terbaik!,youtube
+655,Sumatera Utara,Binjai,Male,26,Student,21,23,Terus berkarya!,youtube
+656,Sumatera Utara,Pematang Siantar,Male,22,Worker,22,2,Suka banget kontennya!,youtube
+657,Sumatera Utara,Binjai,Female,22,Student,22,1,Viewer dari Sumatera Utara!,youtube
+658,Sumatera Utara,Medan,Female,23,Worker,19,20,Sumatera Utara selalu support!,youtube
+659,Sumatera Utara,Pematang Siantar,Male,26,Student,19,21,Keep streaming!,youtube
+660,Sumatera Utara,Binjai,Male,21,Worker,22,0,Keep streaming!,youtube
+661,Sumatera Utara,Medan,Male,23,Worker,21,0,Keep streaming!,youtube
+662,Sumatera Utara,Binjai,Male,18,Student,20,0,Konten keren terus ya!,youtube
+663,Sumatera Utara,Pematang Siantar,Female,28,Student,21,22,Nonton dari Sumatera Utara!,youtube
+664,Sumatera Utara,Binjai,Male,21,Student,20,23,Nonton dari Sumatera Utara!,youtube
+665,Sumatera Utara,Medan,Female,18,Student,22,2,Konten keren terus ya!,youtube
+666,Sumatera Utara,Pematang Siantar,Male,19,Worker,19,21,Sumatera Utara hadir!,youtube
+667,Sumatera Utara,Pematang Siantar,Male,13,Student,19,21,Viewer dari Sumatera Utara!,youtube
+668,Sumatera Utara,Medan,Male,19,Worker,21,0,Nonton dari Sumatera Utara!,youtube
+669,Sumatera Utara,Binjai,Female,13,Student,20,22,Sumatera Utara selalu support!,youtube
+670,Sumatera Utara,Binjai,Female,24,Worker,22,1,Sumatera Utara hadir!,youtube
+671,Sumatera Utara,Binjai,Female,22,Worker,19,20,Salam dari Sumatera Utara!,youtube
+672,Sumatera Utara,Medan,Male,17,Worker,20,23,Keep streaming!,youtube
+673,Sumatera Utara,Binjai,Male,20,Worker,0,3,Suka banget kontennya!,youtube
+674,Sumatera Utara,Medan,Male,20,Student,21,23,Sumatera Utara hadir!,youtube
+675,Sumatera Utara,Medan,Male,16,Student,22,0,Terus berkarya!,youtube
+676,Sumatera Utara,Pematang Siantar,Male,20,Student,20,23,Sumatera Utara hadir!,youtube
+677,Banten,Tangerang,Male,21,Student,21,22,Nonton dari Banten!,youtube
+678,Banten,Tangerang,Male,20,Worker,19,20,Suka banget kontennya!,youtube
+679,Banten,Tangerang,Female,18,Student,19,21,Vtuber terbaik!,youtube
+680,Banten,Cilegon,Male,16,Student,21,0,Terus berkarya!,youtube
+681,Banten,Tangerang,Male,19,Student,21,0,Nonton dari Banten!,youtube
+682,Banten,Cilegon,Female,18,Student,20,21,Keep streaming!,youtube
+683,Banten,Tangerang,Male,23,Student,19,22,Salam dari Banten!,youtube
+684,Banten,Cilegon,Male,26,Student,19,22,Vtuber terbaik!,youtube
+685,Banten,Cilegon,Male,24,Worker,23,0,Salam dari Banten!,youtube
+686,Banten,Serang,Male,21,Worker,22,23,Salam dari Banten!,youtube
+687,Banten,Tangerang,Male,18,Worker,23,2,Konten keren terus ya!,youtube
+688,Banten,Tangerang,Male,24,Student,20,23,Semangat terus!,youtube
+689,Jawa Tengah,Magelang,Female,23,Student,22,0,Jawa Tengah hadir!,youtube
+690,Jawa Tengah,Tegal,Male,26,Worker,21,23,Suka banget kontennya!,youtube
+691,Jawa Tengah,Semarang,Male,21,Student,21,1,Viewer dari Jawa Tengah!,youtube
+692,Jawa Tengah,Semarang,Male,27,Student,19,21,Keep streaming!,youtube
+693,Jawa Tengah,Pekalongan,Male,21,Worker,19,21,Keep streaming!,youtube
+694,Jawa Tengah,Tegal,Male,18,Student,23,1,Jawa Tengah hadir!,youtube
+695,Jawa Tengah,Solo,Male,19,Student,20,22,Jawa Tengah hadir!,youtube
+696,Jawa Tengah,Semarang,Male,23,Student,21,0,Salam dari Jawa Tengah!,youtube
+697,Jawa Tengah,Semarang,Male,18,Worker,21,0,Jawa Tengah selalu support!,youtube
+698,Jawa Tengah,Tegal,Male,27,Student,20,22,Viewer dari Jawa Tengah!,youtube
+699,Sulawesi Selatan,Makassar,Male,22,Worker,0,3,Viewer dari Sulawesi Selatan!,youtube
+700,Sulawesi Selatan,Parepare,Male,21,Worker,20,21,Semangat terus!,youtube
+701,Sulawesi Selatan,Parepare,Male,21,Worker,21,23,Sulawesi Selatan hadir!,youtube
+702,Sulawesi Selatan,Makassar,Male,19,Worker,23,2,Viewer dari Sulawesi Selatan!,youtube
+703,Sulawesi Selatan,Parepare,Male,14,Student,22,0,Terus berkarya!,youtube
+704,Sulawesi Selatan,Palopo,Female,19,Worker,20,22,Represent Sulawesi Selatan!,youtube
+705,Sulawesi Selatan,Makassar,Male,27,Worker,20,21,Salam dari Sulawesi Selatan!,youtube
+706,Sulawesi Selatan,Makassar,Female,21,Worker,20,23,Sulawesi Selatan selalu support!,youtube
+707,Sulawesi Selatan,Makassar,Male,25,Student,22,1,Sulawesi Selatan selalu support!,youtube
+708,Sulawesi Selatan,Makassar,Male,25,Student,23,3,Viewer dari Sulawesi Selatan!,youtube
+709,Jawa Barat,,Male,33,Student,18,21,Semoga kualitas singer vtuber bisa terus berkembang,form
+710,DI Yogyakarta,,Male,29,Student,20,22,no feedback dulu,form
+711,Jawa Barat,,Male,23,Student,15,17,Nice,form
+712,Jawa Barat,,Male,26,Student,20,23,"Oshi saya sering Guerilla Stream jadi gak tentu jam berapa, tapi ya seringnya stream malam dan diantara jam 20.00-00.00",form
+713,Bali,,Male,23,Worker,20,21,Pecinta Vtuber Singer Bahasa Fiksi (Fictional Language),form
+714,Sulawesi Selatan,,Male,29,Student,15,20,Jangan lupa stream game yg gw request kemarin,form
+715,Jawa Barat,,Male,26,Worker,19,22,HIDUP JOKOWI,form
+716,Jawa Tengah,,Male,24,Worker,17,19,semua bisa nyanyi intinya cari suara lo,form
+717,Kalimantan Timur,,Male,10,Student,0,21,ga ada sih,form
+718,Jawa Barat,,Female,34,Worker,19,23,Aku harap vtuber kesukaanku bisa bermain lebih banyak game horror karena dia lucu kalau teriak XD,form
+719,Jawa Barat,,Female,27,Student,19,21,Salah satu alasan saya menonton Singer VTuber adalah karena mudah menemukan lagu-lagu baru dan aransemen yang berbeda dari versi aslinya. Banyak Singer VTuber yang memiliki kualitas vokal yang sangat,form
+720,DKI Jakarta,,Female,19,Worker,12,1,Mantap,form
+721,DKI Jakarta,,Male,32,Worker,20,21,Tidak Ada,form
+722,Jawa Barat,,Male,17,Worker,23,0,ta lu poke,form
+723,Jawa Barat,,Male,21,Student,19,22,Pesan yang ingin disampaikan ialah semoga semakin banyak pituber singer berkualitas diluar sana yang bisa saya oshikan 👍,form
+724,Jawa Barat,,Male,23,Student,19,21,unik dan menarik untuk ditonton,form
+725,Jawa Barat,,Male,32,Worker,19,22,terus berkarya walau AI mulai menguasai dunia,form
+726,Jawa Barat,,Male,17,Worker,20,22,Makasih ya udah jadi temen nyanyi aku (/thanks for doing karaoke with us),form
+727,DKI Jakarta,,Male,28,Worker,20,22,Boleh dikurangi sfx nya,form
+728,DKI Jakarta,,Male,18,Student,19,20,"semoga para VTuber Singer terus menghasilkan karya yang menginspirasi, membangun komunitas yang positif, dan selalu menikmati setiap perjalanan dalam berkarya.",form
+729,Sulawesi Tengah,,Male,30,Student,19,22,Sebut namaku kak😘,form
+730,DKI Jakarta,,Male,25,Worker,19,22,Suara nya jangan jangan pake voice changer,form
