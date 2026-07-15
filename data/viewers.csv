@@ -1,0 +1,102 @@
+id,province,city,gender,age,status,watch_start_hour,watch_end_hour,message
+1,DKI Jakarta,Jakarta Pusat,Male,19,Student,20,23,Nijisanji ID forever!!!
+2,DKI Jakarta,Jakarta Selatan,Female,22,Worker,21,24,Hana Macchia suara merdu banget
+3,DKI Jakarta,Jakarta Barat,Male,17,Student,19,22,Zeta keren parah
+4,DKI Jakarta,Jakarta Timur,Female,25,Worker,22,1,Suka banget sama livenya
+5,DKI Jakarta,Jakarta Utara,Male,20,Student,20,23,Kaela Kovalskia best girl
+6,Jawa Barat,Bandung,Male,18,Student,19,22,Kobo Kanaeru lucu bgt
+7,Jawa Barat,Bekasi,Female,23,Worker,21,23,Zeta Gaming is amazing
+8,Jawa Barat,Depok,Male,21,Student,20,22,Vestia Zeta mantap
+9,Jawa Barat,Bogor,Female,16,Student,18,21,Holo ID kawai!
+10,Jawa Barat,Cirebon,Male,24,Worker,22,24,Push terus streamnya
+11,Jawa Tengah,Semarang,Female,19,Student,20,23,ANYCOLOR LOVE
+12,Jawa Tengah,Solo,Male,22,Worker,21,24,Suka nonton bareng teman
+13,Jawa Tengah,Yogyakarta,Female,20,Student,19,22,Kaela gaming lucu parah
+14,Jawa Tengah,Magelang,Male,17,Student,18,21,Idol corp keren
+15,Jawa Tengah,Pekalongan,Female,25,Worker,22,1,Nonton sambil kerja enak
+16,Jawa Timur,Surabaya,Male,21,Student,20,23,Kobo seru banget
+17,Jawa Timur,Malang,Female,18,Student,19,22,HoloID semangat!
+18,Jawa Timur,Sidoarjo,Male,23,Worker,21,23,Zeta parah kocaknya
+19,Jawa Timur,Kediri,Female,26,Worker,22,24,Suka desain Live2D nya
+20,Jawa Timur,Madiun,Male,19,Student,20,22,Niji ID stream kapan?
+21,Banten,Tangerang,Female,22,Worker,21,24,Jakarta macet nonton stream aja
+22,Banten,Serang,Male,20,Student,20,23,Vtuber lokal lebih keren
+23,Banten,Cilegon,Female,17,Student,18,21,Suka banget kontennya
+24,Bali,Denpasar,Male,24,Worker,22,1,Zeta best streamer
+25,Bali,Kuta,Female,21,Student,21,23,HoloID dari Bali wajib support
+26,Bali,Ubud,Male,19,Student,20,22,Konten gaming seru
+27,Sumatera Utara,Medan,Female,23,Worker,21,24,Medan juga suka vtuber
+28,Sumatera Utara,Binjai,Male,18,Student,20,22,Niji ID keren abis
+29,Sumatera Utara,Pematang Siantar,Female,20,Student,19,22,Hana Macchia favoritku
+30,Sumatera Barat,Padang,Male,22,Worker,21,23,Minang juga nonton vtuber
+31,Sumatera Barat,Bukittinggi,Female,19,Student,20,22,Kaela lucu banget
+32,Riau,Pekanbaru,Male,25,Worker,22,24,Riau represent!
+33,Riau,Dumai,Female,21,Student,21,23,Suka Live2D model HoloID
+34,Kepulauan Riau,Batam,Male,20,Student,20,22,Batam juga hadir
+35,Kepulauan Riau,Tanjung Pinang,Female,18,Student,19,21,Suka nonton malam
+36,Jambi,Jambi,Male,23,Worker,21,24,Jambi also watching!
+37,Sumatera Selatan,Palembang,Female,22,Student,20,23,Palembang nonton stream
+38,Sumatera Selatan,Lubuk Linggau,Male,19,Student,19,22,Kobo kawai desu
+39,Bengkulu,Bengkulu,Female,24,Worker,22,1,Nonton setelah kerja
+40,Lampung,Bandar Lampung,Male,20,Student,21,23,Lampung ada juga nih
+41,Lampung,Metro,Female,17,Student,18,21,Suka fanart vtuber
+42,Kalimantan Barat,Pontianak,Male,22,Worker,21,24,Pontianak hadir
+43,Kalimantan Barat,Singkawang,Female,19,Student,20,22,Vtuber Indonesia terbaik
+44,Kalimantan Tengah,Palangka Raya,Male,21,Student,20,23,Tengah Kalimantan juga nonton
+45,Kalimantan Selatan,Banjarmasin,Female,23,Worker,22,24,Banjar nonton stream
+46,Kalimantan Selatan,Banjarbaru,Male,18,Student,19,22,Suka collab antar vtuber
+47,Kalimantan Timur,Samarinda,Female,25,Worker,21,23,Kaltim represent!
+48,Kalimantan Timur,Balikpapan,Male,20,Student,20,22,Balikpapan hadir
+49,Kalimantan Utara,Tarakan,Female,22,Worker,22,24,Utara Kalimantan juga
+50,Sulawesi Utara,Manado,Male,19,Student,20,23,Manado nonton vtuber
+51,Sulawesi Utara,Bitung,Female,21,Student,21,23,Sulut hadir
+52,Sulawesi Tengah,Palu,Male,24,Worker,22,1,Palu juga nonton
+53,Sulawesi Selatan,Makassar,Female,20,Student,20,23,Makassar represent!
+54,Sulawesi Selatan,Parepare,Male,18,Student,19,22,Suka stream gaming
+55,Sulawesi Selatan,Palopo,Female,22,Worker,21,24,Sulsel nonton bareng
+56,Sulawesi Tenggara,Kendari,Male,23,Worker,22,23,Kendari juga hadir
+57,Sulawesi Barat,Mamuju,Female,19,Student,20,22,Sulbar nonton vtuber
+58,Gorontalo,Gorontalo,Male,21,Student,21,23,Gorontalo hadir juga
+59,Maluku,Ambon,Female,25,Worker,22,24,Ambon nonton stream
+60,Maluku Utara,Ternate,Male,20,Student,21,23,Ternate juga suka vtuber
+61,Papua,Jayapura,Female,22,Worker,22,1,Papua hadir
+62,Papua Barat,Manokwari,Male,19,Student,20,22,Papua Barat nonton
+63,NTB,Mataram,Female,23,Worker,21,24,NTB juga nonton
+64,NTB,Bima,Male,18,Student,19,22,Suka vtuber gaming
+65,NTT,Kupang,Female,20,Student,20,23,NTT hadir
+66,DKI Jakarta,Jakarta Pusat,Male,23,Worker,21,24,Holo ID terbaik
+67,DKI Jakarta,Jakarta Selatan,Female,19,Student,20,22,Zeta Gaming lucu
+68,DKI Jakarta,Jakarta Barat,Male,25,Worker,22,1,Nonton sambil lembur
+69,Jawa Barat,Bandung,Female,17,Student,18,21,Bandung vtuber fans
+70,Jawa Barat,Bekasi,Male,22,Worker,21,23,Kobo stream kapan lagi
+71,Jawa Barat,Depok,Female,20,Student,20,22,Suka sama outfit Live2D
+72,Jawa Tengah,Semarang,Male,24,Worker,22,24,Semarang juga hadir
+73,Jawa Tengah,Yogyakarta,Female,21,Student,20,23,Jogja vtuber fans
+74,Jawa Timur,Surabaya,Male,18,Student,19,22,Sby always here
+75,Jawa Timur,Malang,Female,23,Worker,21,24,Malang nonton stream
+76,Bali,Denpasar,Male,20,Student,20,23,Bali represent
+77,Sumatera Utara,Medan,Female,25,Worker,22,1,Medan hadir terus
+78,DKI Jakarta,Jakarta Selatan,Male,19,Student,21,23,Suka banget sama nijisanji
+79,DKI Jakarta,Jakarta Pusat,Female,22,Worker,20,23,Kaela konten bagus banget
+80,Jawa Barat,Bandung,Male,21,Student,19,22,Bandung proud vtuber fans
+81,Jawa Barat,Bekasi,Female,18,Student,20,22,Kobo ngegame seru
+82,Jawa Tengah,Solo,Male,24,Worker,21,24,Solo hadir ya
+83,Jawa Timur,Surabaya,Female,20,Student,20,23,Surabaya nonton bareng
+84,Banten,Tangerang,Male,17,Student,18,21,Tangerang juga ada
+85,Bali,Kuta,Female,23,Worker,22,24,Kuta beach sambil nonton
+86,Sulawesi Selatan,Makassar,Male,19,Student,20,23,Makassar vtuber community
+87,Kalimantan Timur,Samarinda,Female,21,Student,21,23,IKN tetap nonton vtuber
+88,DKI Jakarta,Jakarta Timur,Male,26,Worker,22,1,Udah tua tapi masih nonton
+89,DKI Jakarta,Jakarta Utara,Female,20,Student,20,22,Jakarta utara hadir
+90,Jawa Barat,Cirebon,Male,18,Student,19,21,Cirebon juga nonton
+91,Jawa Tengah,Pekalongan,Female,24,Worker,22,24,Pekalongan hadir
+92,Jawa Timur,Kediri,Male,21,Student,20,23,Kediri nonton
+93,Sumatera Barat,Padang,Female,19,Student,20,22,Padang juga keren
+94,Riau,Pekanbaru,Male,23,Worker,21,24,Pekanbaru stream marathon
+95,Sulawesi Utara,Manado,Female,22,Student,21,23,Manado juga hadir lagi
+96,Maluku,Ambon,Male,20,Worker,22,1,Ambon tetap nonton
+97,Papua,Jayapura,Female,18,Student,20,22,Jayapura hadir
+98,NTB,Mataram,Male,25,Worker,21,24,Mataram nonton
+99,Kalimantan Barat,Pontianak,Female,19,Student,20,22,Pontianak hadir lagi
+100,Sulawesi Selatan,Makassar,Male,22,Worker,21,23,Makassar vtuber lovers
+101,DKI Jakarta,Jakarta Utara,Female,23,Student,23,03,Kaela Kovalskia best gamer

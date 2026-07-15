@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VTuber Map Indonesia — Sebaran Penonton</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Loading screen */
+    #loading {
+      position: fixed; inset: 0; z-index: 9998;
+      background: #050810;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 20px;
+      transition: opacity 0.4s ease;
+    }
+    .loading-logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 22px; font-weight: 900; letter-spacing: 4px;
+      background: linear-gradient(135deg, #00f5ff, #ff2d9f);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: glitch 4s ease-in-out infinite;
+    }
+    .loading-bar-track {
+      width: 240px; height: 3px;
+      background: rgba(255,255,255,0.06); border-radius: 2px;
+    }
+    .loading-bar-fill {
+      height: 100%; border-radius: 2px; width: 0%;
+      background: linear-gradient(90deg, #00f5ff, #ff2d9f);
+      animation: loadFill 1.2s ease-out forwards 0.2s;
+    }
+    @keyframes loadFill { to { width: 100%; } }
+    .loading-sub {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 12px; letter-spacing: 2px; color: #4a5568;
+    }
+
+    /* Province list active state */
+    .prov-list-item.active {
+      background: rgba(0,245,255,0.08);
+      border-left: 2px solid #00f5ff;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== LOADING SCREEN ========== -->
+<div id="loading">
+  <div style="font-size:40px;">🎌</div>
+  <div class="loading-logo">VTUBER MAP ID</div>
+  <div class="loading-bar-track"><div class="loading-bar-fill"></div></div>
+  <div class="loading-sub">MEMUAT DATA PENONTON...</div>
+</div>
+
+<!-- ========== MAIN APP ========== -->
+<div id="app">
+
+  <!-- ======= HEADER ======= -->
+  <header id="header">
+    <div class="header-logo">
+      <div class="logo-icon">🌸</div>
+      <div>
+        <div class="logo-text">VTUBER MAP INDONESIA</div>
+        <div class="logo-sub">AUDIENCE ANALYTICS SYSTEM</div>
+      </div>
+    </div>
+
+    <div class="header-stats">
+      <div class="hstat">
+        <span class="hstat-value" id="stat-total">—</span>
+        <span class="hstat-label">Total Penonton</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-value" id="stat-prov">—</span>
+        <span class="hstat-label">Provinsi</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-value" id="stat-male" style="color:#00f5ff;">—</span>
+        <span class="hstat-label">Laki-laki</span>
+      </div>
+      <div class="hstat">
+        <span class="hstat-value" id="stat-female" style="color:#ff2d9f;">—</span>
+        <span class="hstat-label">Perempuan</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- CSV Upload (optional) -->
+      <label style="cursor:pointer; display:flex; align-items:center; gap:6px;
+                     font-size:11px; color:#8892b0; font-family:'Rajdhani',sans-serif;
+                     padding:4px 10px; border:1px solid rgba(0,245,255,0.2); border-radius:6px;
+                     background:rgba(0,245,255,0.05); transition:all 0.2s;"
+             title="Upload CSV data penonton">
+        <input type="file" id="csv-upload" accept=".csv" style="display:none;" />
+        📁 Ganti CSV
+      </label>
+      <div class="live-badge"><span class="live-dot"></span> LIVE DATA</div>
+    </div>
+  </header>
+
+
+  <!-- ======= LEFT PANEL ======= -->
+  <aside id="left-panel">
+
+    <!-- Peak Time Global -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">⏰</span> PEAK VIEWING TIME</div>
+      <div class="chart-wrapper" style="height:130px;">
+        <canvas id="chart-global-peak"></canvas>
+      </div>
+      <div class="peak-label"><span>00:00</span><span>12:00</span><span>23:00</span></div>
+    </div>
+
+    <!-- Density Legend -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">🗺️</span> KEPADATAN PENONTON</div>
+      <div id="density-legend"></div>
+    </div>
+
+    <!-- Province Ranking -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">📊</span> RANKING PROVINSI</div>
+      <div id="prov-ranking" style="display:flex;flex-direction:column;gap:3px;max-height:280px;overflow-y:auto;"></div>
+      <div class="neon-divider" style="margin-top:10px;"></div>
+      <button id="btn-reset"
+        style="margin-top:8px; width:100%; padding:7px; border-radius:6px; border:1px solid rgba(0,245,255,0.3);
+               background:rgba(0,245,255,0.06); color:#00f5ff; font-family:'Rajdhani',sans-serif;
+               font-size:12px; letter-spacing:1px; cursor:pointer; transition:all 0.2s;"
+        onmouseover="this.style.background='rgba(0,245,255,0.15)'"
+        onmouseout="this.style.background='rgba(0,245,255,0.06)'">
+        🔄 Reset ke Indonesia
+      </button>
+    </div>
+
+    <!-- Info box -->
+    <div class="panel-card" style="border-color:rgba(178,75,255,0.3);">
+      <div class="card-title" style="color:#b24bff;"><span class="icon">ℹ️</span> CARA PAKAI</div>
+      <div style="font-size:11px;color:#8892b0;line-height:1.7;">
+        • <span style="color:#00f5ff;">Klik provinsi</span> di peta untuk detail<br>
+        • Hover peta untuk lihat data singkat<br>
+        • Warna menunjukkan kepadatan penonton<br>
+        • Grafik kanan otomatis update
+      </div>
+    </div>
+
+  </aside>
+
+
+  <!-- ======= MAP CONTAINER ======= -->
+  <main id="map-container">
+    <div class="map-grid-overlay"></div>
+    <div id="map"></div>
+    <div class="map-overlay-label">
+      KLIK PROVINSI UNTUK DETAIL ANALITIK
+    </div>
+  </main>
+
+
+  <!-- ======= RIGHT PANEL ======= -->
+  <aside id="right-panel">
+
+    <!-- Province Info Header -->
+    <div class="panel-card" id="province-detail">
+      <div class="card-title"><span class="icon">📍</span> DETAIL DAERAH</div>
+      <div id="province-header">
+        <div class="no-data">
+          <div class="no-data-icon">🗺️</div>
+          <div>Klik provinsi di peta</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Peak Time (per province) -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">📈</span> PEAK WATCHING TIME</div>
+      <div class="chart-wrapper" style="height:140px;">
+        <canvas id="chart-peak"></canvas>
+      </div>
+    </div>
+
+    <!-- Gender Chart -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">👥</span> PERBANDINGAN GENDER</div>
+      <div class="chart-wrapper" style="height:130px;">
+        <canvas id="chart-gender"></canvas>
+      </div>
+    </div>
+
+    <!-- Age Distribution -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">🎂</span> DISTRIBUSI UMUR</div>
+      <div class="chart-wrapper" style="height:150px;">
+        <canvas id="chart-age"></canvas>
+      </div>
+    </div>
+
+    <!-- Viewer Status -->
+    <div class="panel-card">
+      <div class="card-title"><span class="icon">💼</span> STATUS PENONTON</div>
+      <div class="chart-wrapper" style="height:160px;">
+        <canvas id="chart-status"></canvas>
+      </div>
+    </div>
+
+  </aside>
+
+</div><!-- /#app -->
+
+
+<!-- ======= FLOATING MESSAGES ======= -->
+<div id="floating-messages"></div>
+
+
+<!-- ========== LIBRARIES ========== -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<!-- ========== APP MODULES ========== -->
+<script src="js/data.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/messages.js"></script>
+<script src="js/map.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>
