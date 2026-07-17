@@ -221,16 +221,52 @@ const DataModule = (() => {
     return hourDist;
   }
 
-  /* ---- Color scale based on density ---- */
-  function getDensityColor(count, max) {
-    const t = max > 0 ? count / max : 0;
-    if (t === 0) return { fill: 'rgba(10,15,40,0.4)', stroke: 'rgba(0,245,255,0.15)' };
-    if (t < 0.1) return { fill: 'rgba(0,100,180,0.35)', stroke: 'rgba(0,180,255,0.4)' };
-    if (t < 0.25) return { fill: 'rgba(0,150,220,0.45)', stroke: 'rgba(0,220,255,0.5)' };
-    if (t < 0.45) return { fill: 'rgba(80,60,220,0.5)', stroke: 'rgba(100,100,255,0.6)' };
-    if (t < 0.65) return { fill: 'rgba(150,30,220,0.55)', stroke: 'rgba(180,80,255,0.7)' };
-    if (t < 0.80) return { fill: 'rgba(200,20,150,0.6)', stroke: 'rgba(255,60,180,0.75)' };
-    return { fill: 'rgba(255,30,100,0.7)', stroke: 'rgba(255,80,160,0.9)' };
+  /* ---- Hitung breakpoints kuantil dari data provinsi ---- */
+  // Alih-alih linear terhadap nilai max (yang bikin provinsi kecil semua
+  // jatuh ke warna rendah kalau ada 1 provinsi yang jauh mendominasi,
+  // mis. Jakarta), kita bagi provinsi menjadi 6 kelompok berdasarkan
+  // PERINGKAT/distribusi nilai asli (quantile). Ini membuat warna
+  // tersebar merata ke semua provinsi sesuai posisi relatifnya.
+  function computeBreaks(provMap, numBuckets = 6) {
+    const counts = Object.values(provMap)
+      .map(p => p.total)
+      .filter(c => c > 0)
+      .sort((a, b) => a - b);
+    if (!counts.length) return [];
+    const breaks = [];
+    for (let i = 1; i < numBuckets; i++) {
+      const idx = Math.min(counts.length - 1, Math.max(0, Math.ceil((i / numBuckets) * counts.length) - 1));
+      breaks.push(counts[idx]);
+    }
+    return breaks; // numBuckets-1 breakpoint ascending
+  }
+
+  function bucketIndex(count, breaks) {
+    const safeBreaks = Array.isArray(breaks) ? breaks : [];
+    const n = Number(count);
+    if (!Number.isFinite(n) || n <= 0) return 0;
+    for (let i = 0; i < safeBreaks.length; i++) {
+      if (n <= safeBreaks[i]) return i + 1;
+    }
+    return safeBreaks.length + 1;
+  }
+
+  /* ---- Color scale based on quantile bucket ---- */
+  const DENSITY_COLORS = [
+    { fill: 'rgba(10,15,40,0.4)',   stroke: 'rgba(0,245,255,0.15)' }, // tidak ada data
+    { fill: 'rgba(0,100,180,0.4)',  stroke: 'rgba(0,180,255,0.5)' },
+    { fill: 'rgba(0,160,210,0.5)',  stroke: 'rgba(0,220,255,0.6)' },
+    { fill: 'rgba(60,120,230,0.55)',stroke: 'rgba(100,150,255,0.65)' },
+    { fill: 'rgba(140,50,220,0.6)', stroke: 'rgba(180,90,255,0.7)' },
+    { fill: 'rgba(220,20,160,0.65)',stroke: 'rgba(255,70,190,0.8)' },
+    { fill: 'rgba(255,30,90,0.75)', stroke: 'rgba(255,90,140,0.9)' },
+  ];
+
+  function getDensityColor(count, breaks) {
+    const idx = bucketIndex(count, breaks);
+    // Jaga-jaga: kalau idx di luar jangkauan karena alasan apapun,
+    // fallback ke warna "tidak ada data" alih-alih undefined (mencegah crash).
+    return DENSITY_COLORS[idx] || DENSITY_COLORS[0];
   }
 
   /* ---- Public API ---- */
@@ -301,8 +337,12 @@ const DataModule = (() => {
     return Math.max(...Object.values(provMap).map(p => p.total), 1);
   }
 
-  function getColorFor(count, max) {
-    return getDensityColor(count, max);
+  function getColorFor(count, breaks) {
+    return getDensityColor(count, breaks);
+  }
+
+  function getBreaks(provMap) {
+    return computeBreaks(provMap);
   }
 
   function getProvRanking(provMap) {
@@ -310,7 +350,7 @@ const DataModule = (() => {
   }
 
   return { load, getRawRows, getProvSummary, getGlobal, getAgeGroupsFor, getPeakFor,
-           getAllMessages, getMaxProvCount, getColorFor, getProvRanking };
+           getAllMessages, getMaxProvCount, getColorFor, getProvRanking, getBreaks };
 
 })();
 

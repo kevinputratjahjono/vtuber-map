@@ -39,10 +39,11 @@
 
   // ---- 6. Init map ----
   const maxCount = DataModule.getMaxProvCount(provMap);
-  MapModule.init('map', provMap, maxCount, onProvinceClick);
+  const breaks   = DataModule.getBreaks(provMap); // quantile breakpoints, biar warna tidak didominasi 1 provinsi
+  MapModule.init('map', provMap, maxCount, breaks, onProvinceClick);
 
   // ---- 7. Build legend ----
-  buildLegend(maxCount);
+  buildLegend(breaks);
 
   // ---- 8. Init default right panel (all-Indonesia view) ----
   renderRightPanel(null);
@@ -87,7 +88,7 @@
         <div class="province-count">Total <span>${global.total}</span> penonton dari <span>${global.provinces}</span> provinsi</div>
         <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
           <span class="stat-badge cyan">💙 ${global.totalMale} Laki-laki</span>
-          <span class="stat-badge pink">🩷 ${global.totalFemale} Perempuan</span>
+          <span class="stat-badge pink">💛 ${global.totalFemale} Perempuan</span>
         </div>
       `;
     } else {
@@ -97,7 +98,7 @@
         <div class="province-count"><span>${pd.total}</span> penonton terdaftar</div>
         <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
           <span class="stat-badge cyan">💙 ${pd.male} M</span>
-          <span class="stat-badge pink">🩷 ${pd.female} F</span>
+          <span class="stat-badge pink">💛 ${pd.female} F</span>
           ${topCity ? `<span class="stat-badge purple">📍 ${topCity[0]}</span>` : ''}
         </div>
       `;
@@ -172,25 +173,28 @@
   // ===========================================================
   //  DENSITY LEGEND
   // ===========================================================
-  function buildLegend(maxCount) {
-    const tiers = [
-      { label: 'Tidak ada data', t: 0 },
-      { label: '1 – 25%', t: 0.1 },
-      { label: '25 – 45%', t: 0.3 },
-      { label: '45 – 65%', t: 0.5 },
-      { label: '65 – 80%', t: 0.7 },
-      { label: '> 80%', t: 0.9 },
-    ];
+  function buildLegend(breaks) {
     const container = document.getElementById('density-legend');
     container.innerHTML = '';
-    tiers.forEach(({ label, t }) => {
-      const count = Math.round(t * maxCount);
-      const { fill } = DataModule.getColorFor(count, maxCount);
+
+    // Bucket 0 = tidak ada data. Bucket 1..N = quantile groups dari breaks.
+    const items = [{ label: 'Tidak ada data', sample: 0 }];
+    let prev = 0;
+    breaks.forEach((b, i) => {
+      const lo = prev + 1;
+      const hi = b;
+      items.push({ label: lo === hi ? `${lo}` : `${lo} – ${hi}`, sample: hi });
+      prev = b;
+    });
+    items.push({ label: `> ${prev}`, sample: prev + 1 });
+
+    items.forEach(({ label, sample }) => {
+      const { fill } = DataModule.getColorFor(sample, breaks);
       const el = document.createElement('div');
       el.className = 'legend-item';
       el.innerHTML = `
         <span class="legend-dot" style="background:${fill};border:1px solid rgba(0,245,255,0.3);"></span>
-        <span>${label}</span>
+        <span>${label} ${sample === 0 ? '' : 'penonton'}</span>
       `;
       container.appendChild(el);
     });

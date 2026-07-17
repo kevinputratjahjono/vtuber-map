@@ -9,6 +9,7 @@ const MapModule = (() => {
   let geoLayer    = null;
   let provData    = {};
   let maxCount    = 1;
+  let breaks      = [];
   let onClickCb   = null;
   let selectedProv = null;
 
@@ -33,7 +34,7 @@ const MapModule = (() => {
 
   /* ---- Density → neon fill color ---- */
   function getColor(count) {
-    return window.DataModule.getColorFor(count, maxCount);
+    return window.DataModule.getColorFor(count, breaks);
   }
 
   /* ---- Style each GeoJSON feature ---- */
@@ -122,9 +123,10 @@ const MapModule = (() => {
   }
 
   /* ---- INIT MAP ---- */
-  function init(containerId, data, maxC, clickCallback) {
+  function init(containerId, data, maxC, breaksArr, clickCallback) {
     provData  = data;
     maxCount  = maxC;
+    breaks    = breaksArr || [];
     onClickCb = clickCallback;
 
     // Create Leaflet map

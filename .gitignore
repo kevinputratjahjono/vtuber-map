@@ -1,0 +1,13 @@
+data/youtube/api-map-480016-fbd4faac5c8c.json
+data/youtube/client_secret_663909966366-mbj44s2q80gimi28baa62sh6us6e6t10.apps.googleusercontent.com.json
+data/youtube/token.json
+data/youtube/.env
+data/youtube/output_Kevin Putra_UCU51lTlTALwxJu6YwJrDJuw/token.json
+data/youtube/output_Mas Vinix_UCI95lkzpAMzP1O_XADsVfdw/token.json
+data/youtube/output_Suou Ono Ch__ARVI__UCZoZhv9PkSryZSN4-WVi0nA/token.json
+data/GSheets/client_secret_663909966366-mbj44s2q80gimi28baa62sh6us6e6t10.apps.googleusercontent.com.json
+# Secrets
+data/youtube/.env
+data/youtube/token.json
+data/youtube/api-map-*.json
+data/youtube/client_secret_*.json

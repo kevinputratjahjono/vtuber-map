@@ -1,0 +1,91 @@
+{
+  "total_responden": 23,
+  "per_provinsi": [
+    {
+      "provinsi": "Jawa Barat",
+      "jumlah_responden": 12,
+      "durasi_rata_rata": 3.4,
+      "pelajar": 6,
+      "pekerja": 4,
+      "laki_laki": 10,
+      "perempuan": 2
+    },
+    {
+      "provinsi": "DKI Jakarta",
+      "jumlah_responden": 5,
+      "durasi_rata_rata": 4.0,
+      "pelajar": 1,
+      "pekerja": 4,
+      "laki_laki": 4,
+      "perempuan": 1
+    },
+    {
+      "provinsi": "DI Yogyakarta",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 2.0,
+      "pelajar": 1,
+      "pekerja": 0,
+      "laki_laki": 1,
+      "perempuan": 0
+    },
+    {
+      "provinsi": "Bali",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 0.8,
+      "pelajar": 0,
+      "pekerja": 1,
+      "laki_laki": 1,
+      "perempuan": 0
+    },
+    {
+      "provinsi": "Jawa Tengah",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 2.0,
+      "pelajar": 0,
+      "pekerja": 1,
+      "laki_laki": 1,
+      "perempuan": 0
+    },
+    {
+      "provinsi": "Kalimantan Timur",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 21.5,
+      "pelajar": 1,
+      "pekerja": 0,
+      "laki_laki": 1,
+      "perempuan": 0
+    },
+    {
+      "provinsi": "Sulawesi Selatan",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 5.0,
+      "pelajar": 1,
+      "pekerja": 0,
+      "laki_laki": 1,
+      "perempuan": 0
+    },
+    {
+      "provinsi": "Sulawesi Tengah",
+      "jumlah_responden": 1,
+      "durasi_rata_rata": 3.0,
+      "pelajar": 1,
+      "pekerja": 0,
+      "laki_laki": 1,
+      "perempuan": 0
+    }
+  ],
+  "per_status": {
+    "Pelajar": 11,
+    "Pekerja": 10,
+    "Tidak Bekerja": 2
+  },
+  "per_gender": {
+    "Laki-Laki": 20,
+    "Perempuan": 3
+  },
+  "per_umur": {
+    "15–64 tahun": 22,
+    "0–14 tahun": 1
+  },
+  "durasi_rata_rata_keseluruhan": 4.1
+}
