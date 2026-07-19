@@ -1,0 +1,10 @@
+ageGroup,gender,viewerPercentage
+age13-17,male,0.08
+age18-24,female,1.05
+age18-24,male,40.41
+age25-34,female,8.67
+age25-34,male,48.75
+age35-44,female,0.11
+age35-44,male,0.7
+age45-54,female,0.08
+age55-64,male,0.13

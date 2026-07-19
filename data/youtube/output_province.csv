@@ -1,9 +1,18 @@
-province,views,watch_minutes,city_count,avg_watch_per_view
-DKI Jakarta,380,60,1,0.2
-West Java,77,12,2,0.2
-East Java,63,9,1,0.1
-Bali,30,80,1,2.7
-North Sumatra,25,4,1,0.2
-Banten,12,1,1,0.1
-Central Java,10,1,1,0.1
-South Sulawesi,10,2,1,0.2
+province,views,estimatedMinutesWatched
+DKI Jakarta,1182,892
+West Java,620,1506
+East Java,327,400
+Central Java,209,150
+South Sumatra,119,32
+Bali,86,128
+North Sumatra,84,72
+South Kalimantan,83,17
+Banten,77,97
+South Sulawesi,76,7
+Bengkulu,64,220
+West Kalimantan,62,15
+East Kalimantan,46,11
+Central Kalimantan,32,312
+Lampung,16,7
+DI Yogyakarta,11,1
+West Sumatra,11,11
