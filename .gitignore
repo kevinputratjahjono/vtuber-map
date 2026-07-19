@@ -11,3 +11,10 @@ data/youtube/.env
 data/youtube/token.json
 data/youtube/api-map-*.json
 data/youtube/client_secret_*.json
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
