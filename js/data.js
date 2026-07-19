@@ -1,17 +1,25 @@
 // ============================================================
-//  data.js  —  CSV Parsing & Data Aggregation
+//  data.js  —  CSV/JSON Parsing & Data Aggregation
 //  Handles all data processing for the Vtuber Map
+//
+//  PERUBAHAN UTAMA:
+//  - Tambah loader untuk age_gender_merged.csv & summary_form.json
+//  - computeGlobalCombined() → gabungkan data YouTube + Form
+//    untuk gender dan umur (se-Indonesia)
+//  - Status & waktu tonton → murni dari summary_form.json (form saja)
+//  - aggregateByProvince() tetap ada → hanya untuk kepadatan peta
+//  - Panel kanan tidak lagi per-daerah; semua chart pakai data global
 // ============================================================
 
 const DataModule = (() => {
 
   /* ---- Raw storage ---- */
-  let rawRows = [];
+  let rawRows      = [];   // dari viewers_merged.csv (untuk peta)
+  let ageGenderYT  = [];   // dari age_gender_merged.csv
+  let summaryForm  = null; // dari summary_form.json
 
   /* ---- Province name normalizer ---- */
-  // Target names harus cocok dengan nilai PROVINSI di GeoJSON
   const PROVINCE_ALIASES = {
-    // Langsung / sudah cocok
     'DKI Jakarta':              'DKI Jakarta',
     'Jawa Barat':               'Jawa Barat',
     'Jawa Tengah':              'Jawa Tengah',
@@ -44,30 +52,21 @@ const DataModule = (() => {
     'Aceh':                     'Aceh',
     'Bangka Belitung':          'Kepulauan Bangka Belitung',
     'Kepulauan Bangka Belitung':'Kepulauan Bangka Belitung',
-
-    // Alias umum dari CSV
     'NTB':                      'Nusa Tenggara Barat',
     'Nusa Tenggara Barat':      'Nusa Tenggara Barat',
     'NTT':                      'Nusa Tenggara Timur',
     'Nusa Tenggara Timur':      'Nusa Tenggara Timur',
-
-    // GeoJSON pakai "Daerah Istimewa Yogyakarta"
     'DIY':                      'Daerah Istimewa Yogyakarta',
     'DI Yogyakarta':            'Daerah Istimewa Yogyakarta',
     'Yogyakarta':               'Daerah Istimewa Yogyakarta',
     'Daerah Istimewa Yogyakarta':'Daerah Istimewa Yogyakarta',
-
-    // Papua pemekaran — fallback ke Papua
     'Papua Tengah':             'Papua Tengah',
     'Papua Selatan':            'Papua Selatan',
     'Papua Barat Daya':         'Papua Barat Daya',
     'Papua Pegunungan':         'Papua Pegunungan',
   };
 
-  /* ---- Parse one CSV line into fields, RFC4180-aware ---- */
-  // Menangani: field yang dibungkus tanda kutip ("..."), koma di dalam
-  // tanda kutip (mis. komentar YouTube asli "keren, mantap!"), dan
-  // tanda kutip ganda ("") sebagai escape untuk kutip literal.
+  /* ---- Parse one CSV line (RFC4180-aware) ---- */
   function parseCSVLine(line) {
     const fields = [];
     let cur = '';
@@ -78,9 +77,7 @@ const DataModule = (() => {
         if (ch === '"') {
           if (line[i + 1] === '"') { cur += '"'; i++; }
           else { inQuotes = false; }
-        } else {
-          cur += ch;
-        }
+        } else { cur += ch; }
       } else {
         if (ch === '"') inQuotes = true;
         else if (ch === ',') { fields.push(cur); cur = ''; }
@@ -93,7 +90,6 @@ const DataModule = (() => {
 
   /* ---- Parse CSV text → array of objects ---- */
   function parseCSV(csvText) {
-    // Dukung baris baru \r\n maupun \n, dan buang baris kosong di akhir file
     const lines = csvText.replace(/\r\n/g, '\n').replace(/\r/g, '\n').trim().split('\n');
     if (!lines.length) return [];
     const headers = parseCSVLine(lines[0]).map(h => h.trim());
@@ -115,118 +111,166 @@ const DataModule = (() => {
     return PROVINCE_ALIASES[name] || name;
   }
 
-  /* ---- Aggregate data by province ---- */
+  /* ---- Aggregate data by province (untuk peta kepadatan saja) ---- */
   function aggregateByProvince(rows) {
     const map = {};
     rows.forEach(row => {
       const prov = normalizeProvince(row.province);
       if (!map[prov]) {
-        map[prov] = {
-          name: prov,
-          total: 0,
-          male: 0, female: 0,
-          ages: [],
-          statuses: { Student: 0, Worker: 0, Unemployed: 0 },
-          watchStarts: [], watchEnds: [],
-          messages: [],
-          cities: {}
-        };
+        map[prov] = { name: prov, total: 0 };
       }
-      const p = map[prov];
-      p.total++;
-
-      // Gender — handle both 'Male'/'Female' dan 'male'/'female' / 'laki-laki'/'perempuan'
-      const g = (row.gender || '').toLowerCase();
-      if (g === 'male' || g === 'laki' || g === 'laki-laki') p.male++;
-      else if (g === 'female' || g === 'perempuan') p.female++;
-
-      // Age
-      const age = parseInt(row.age);
-      if (!isNaN(age)) p.ages.push(age);
-
-      // Status
-      const s = (row.status || '').toLowerCase();
-      if (s === 'student' || s === 'pelajar' || s === 'mahasiswa') p.statuses.Student++;
-      else if (s === 'worker' || s === 'pekerja' || s === 'karyawan') p.statuses.Worker++;
-      else p.statuses.Unemployed++;
-
-      // Watch time — clamp jam ke 0-23 (CSV ada nilai 24 → 0)
-      const start = parseInt(row.watch_start_hour) % 24;
-      const end   = parseInt(row.watch_end_hour)   % 24;
-      if (!isNaN(start)) p.watchStarts.push(start);
-      if (!isNaN(end))   p.watchEnds.push(end);
-
-      // Message
-      if (row.message && row.message.trim()) {
-        p.messages.push({ text: row.message.trim(), city: row.city || prov });
-      }
-
-      // City sub-breakdown
-      const city = row.city || 'Lainnya';
-      p.cities[city] = (p.cities[city] || 0) + 1;
+      map[prov].total++;
     });
     return map;
   }
 
-  /* ---- Compute global stats ---- */
-  function computeGlobal(rows) {
-    const totalMale   = rows.filter(r => (r.gender||'').toLowerCase() === 'male' || (r.gender||'').toLowerCase() === 'laki-laki').length;
-    const totalFemale = rows.filter(r => (r.gender||'').toLowerCase() === 'female' || (r.gender||'').toLowerCase() === 'perempuan').length;
-    const ages = rows.map(r => parseInt(r.age)).filter(a => !isNaN(a));
-    const avgAge = ages.length ? (ages.reduce((a,b)=>a+b,0)/ages.length).toFixed(1) : 0;
+  // ══════════════════════════════════════════════════════════════
+  //  GABUNGAN DATA YOUTUBE + FORM  (se-Indonesia, bukan per daerah)
+  // ══════════════════════════════════════════════════════════════
 
-    const provinces = new Set(rows.map(r => normalizeProvince(r.province)));
+  /**
+   * computeGlobalCombined()
+   * ─────────────────────────────────────────────────────────────
+   * Menggabungkan dua sumber data menjadi satu ringkasan global:
+   *
+   *  GENDER
+   *    YouTube (age_gender_merged.csv) → viewerPercentage per gender
+   *    dikali total views YouTube (sum output_province) → angka absolut YT
+   *    lalu ditambah angka absolut dari summary_form.json
+   *
+   *  UMUR — 3 bucket: "0–14 tahun", "15–64 tahun", ">65 tahun"
+   *    YouTube memakai label age13-17, age18-24, ..., age55-64
+   *    Mapping ke bucket:
+   *      age13-17              → "0–14 tahun"
+   *      age18-24 ... age55-64 → "15–64 tahun"
+   *      (tidak ada age65+)    → ">65 tahun" hanya dari form
+   *    Persentase YT × total views → angka absolut → + angka form
+   *
+   *  STATUS & WAKTU TONTON
+   *    Murni dari summary_form.json (form Google Sheets saja)
+   *
+   * @param {number} totalViewsYT  — sum semua views di output_province.csv
+   * @returns {object}
+   */
+  function computeGlobalCombined(totalViewsYT) {
+    if (!summaryForm) {
+      console.warn('summary_form.json belum dimuat');
+      return null;
+    }
 
-    // Peak hour distribution (all viewers)
-    const hourDist = Array(24).fill(0);
-    rows.forEach(r => {
-      const s = parseInt(r.watch_start_hour) % 24;
-      const e = parseInt(r.watch_end_hour)   % 24;
-      if (isNaN(s)||isNaN(e)) return;
-      let cur = s;
-      while (cur !== e) {
-        hourDist[cur % 24]++;
-        cur = (cur + 1) % 24;
+    // ── Gender ───────────────────────────────────────────────────
+    // Kumpulkan % per gender dari YouTube
+    let malePctYT = 0, femalePctYT = 0;
+    ageGenderYT.forEach(row => {
+      const pct = parseFloat(row.viewerPercentage) || 0;
+      const g   = (row.gender || '').toLowerCase();
+      if (g === 'male')   malePctYT   += pct;
+      if (g === 'female') femalePctYT += pct;
+    });
+
+    // Konversi % → angka absolut YouTube
+    const maleYT   = Math.round((malePctYT   / 100) * totalViewsYT);
+    const femaleYT = Math.round((femalePctYT / 100) * totalViewsYT);
+
+    // Tambah angka form
+    const maleForm   = summaryForm.gender['Laki-Laki'] || 0;
+    const femaleForm = summaryForm.gender['Perempuan']  || 0;
+
+    const gender = {
+      'Laki-Laki': maleYT   + maleForm,
+      'Perempuan':  femaleYT + femaleForm,
+      // Simpan komponen terpisah untuk tooltip informatif
+      _yt:   { 'Laki-Laki': maleYT,   'Perempuan': femaleYT },
+      _form: { 'Laki-Laki': maleForm, 'Perempuan': femaleForm },
+    };
+
+    // ── Umur ─────────────────────────────────────────────────────
+    // Mapping label YouTube → bucket sheets_clean
+    const YT_TO_BUCKET = {
+      'age13-17': '0–14 tahun',
+      'age18-24': '15–64 tahun',
+      'age25-34': '15–64 tahun',
+      'age35-44': '15–64 tahun',
+      'age45-54': '15–64 tahun',
+      'age55-64': '15–64 tahun',
+      // age65+ tidak ada di data YouTube kita → hanya form
+    };
+
+    // Hitung % per bucket dari YouTube
+    const pctPerBucket = { '0–14 tahun': 0, '15–64 tahun': 0, '>65 tahun': 0 };
+    ageGenderYT.forEach(row => {
+      const bucket = YT_TO_BUCKET[row.ageGroup];
+      if (bucket) {
+        pctPerBucket[bucket] += parseFloat(row.viewerPercentage) || 0;
       }
     });
 
-    return { total: rows.length, totalMale, totalFemale, avgAge, provinces: provinces.size, hourDist };
-  }
-
-  /* ---- Get age group distribution for a province ---- */
-  function getAgeGroups(ages) {
-    const groups = { '13–17': 0, '18–22': 0, '23–27': 0, '28–35': 0, '35+': 0 };
-    ages.forEach(a => {
-      if (a <= 17) groups['13–17']++;
-      else if (a <= 22) groups['18–22']++;
-      else if (a <= 27) groups['23–27']++;
-      else if (a <= 35) groups['28–35']++;
-      else groups['35+']++;
+    // Konversi % → angka absolut YouTube per bucket
+    const umurYT = {};
+    Object.entries(pctPerBucket).forEach(([bucket, pct]) => {
+      umurYT[bucket] = Math.round((pct / 100) * totalViewsYT);
     });
-    return groups;
+
+    // Tambah angka form per bucket
+    const umurForm = summaryForm.umur || {};
+    const umur = {
+      '0–14 tahun':  (umurYT['0–14 tahun']  || 0) + (umurForm['0–14 tahun']  || 0),
+      '15–64 tahun': (umurYT['15–64 tahun'] || 0) + (umurForm['15–64 tahun'] || 0),
+      '>65 tahun':   (umurYT['>65 tahun']   || 0) + (umurForm['>65 tahun']   || 0),
+      // Komponen terpisah untuk tooltip
+      _yt:   umurYT,
+      _form: umurForm,
+    };
+
+    // ── Status (form saja) ────────────────────────────────────────
+    const status = {
+      Student:    summaryForm.status['Pelajar']       || 0,
+      Worker:     summaryForm.status['Pekerja']       || 0,
+      Unemployed: summaryForm.status['Tidak Bekerja'] || 0,
+    };
+
+    // ── Peak time (form saja) ─────────────────────────────────────
+    const hourDist = summaryForm.hour_dist || Array(24).fill(0);
+
+    // ── Meta ──────────────────────────────────────────────────────
+    const totalGender = gender['Laki-Laki'] + gender['Perempuan'];
+    const totalForm   = summaryForm.total_responden_form || 0;
+
+    return {
+      totalViewsYT,
+      totalForm,
+      totalGabungan: totalViewsYT + totalForm,
+      gender,
+      umur,
+      status,
+      hourDist,
+      durasi_rata_rata_jam: summaryForm.durasi_rata_rata_jam || 0,
+      durasi_median_jam:    summaryForm.durasi_median_jam    || 0,
+      periode:              summaryForm.periode || '',
+    };
   }
 
-  /* ---- Build 24h peak time data for a province ---- */
-  function getPeakTimeData(provData) {
-    const hourDist = Array(24).fill(0);
-    provData.watchStarts.forEach((s, i) => {
-      const e = provData.watchEnds[i];
-      if (isNaN(s)||isNaN(e)) return;
-      let cur = s;
-      while (cur !== e) {
-        hourDist[cur % 24]++;
-        cur = (cur + 1) % 24;
-      }
-    });
-    return hourDist;
+  /* ── Hitung total views YouTube dari output_province.csv ── */
+  async function loadTotalViewsYT(url) {
+    try {
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const text = await resp.text();
+      const lines = text.trim().split('\n').slice(1); // skip header
+      let total = 0;
+      lines.forEach(line => {
+        const parts = line.split(',');
+        const v = parseInt(parts[1]);
+        if (!isNaN(v)) total += v;
+      });
+      return total;
+    } catch (e) {
+      console.warn('output_province.csv gagal dimuat, total YT = 0:', e.message);
+      return 0;
+    }
   }
 
-  /* ---- Hitung breakpoints kuantil dari data provinsi ---- */
-  // Alih-alih linear terhadap nilai max (yang bikin provinsi kecil semua
-  // jatuh ke warna rendah kalau ada 1 provinsi yang jauh mendominasi,
-  // mis. Jakarta), kita bagi provinsi menjadi 6 kelompok berdasarkan
-  // PERINGKAT/distribusi nilai asli (quantile). Ini membuat warna
-  // tersebar merata ke semua provinsi sesuai posisi relatifnya.
+  /* ---- Quantile breaks untuk warna peta ---- */
   function computeBreaks(provMap, numBuckets = 6) {
     const counts = Object.values(provMap)
       .map(p => p.total)
@@ -238,7 +282,7 @@ const DataModule = (() => {
       const idx = Math.min(counts.length - 1, Math.max(0, Math.ceil((i / numBuckets) * counts.length) - 1));
       breaks.push(counts[idx]);
     }
-    return breaks; // numBuckets-1 breakpoint ascending
+    return breaks;
   }
 
   function bucketIndex(count, breaks) {
@@ -251,106 +295,143 @@ const DataModule = (() => {
     return safeBreaks.length + 1;
   }
 
-  /* ---- Color scale based on quantile bucket ---- */
+  /* ---- Color scale ---- */
   const DENSITY_COLORS = [
-    { fill: 'rgba(10,15,40,0.4)',   stroke: 'rgba(0,245,255,0.15)' }, // tidak ada data
-    { fill: 'rgba(0,100,180,0.4)',  stroke: 'rgba(0,180,255,0.5)' },
-    { fill: 'rgba(0,160,210,0.5)',  stroke: 'rgba(0,220,255,0.6)' },
-    { fill: 'rgba(60,120,230,0.55)',stroke: 'rgba(100,150,255,0.65)' },
-    { fill: 'rgba(140,50,220,0.6)', stroke: 'rgba(180,90,255,0.7)' },
-    { fill: 'rgba(220,20,160,0.65)',stroke: 'rgba(255,70,190,0.8)' },
-    { fill: 'rgba(255,30,90,0.75)', stroke: 'rgba(255,90,140,0.9)' },
+    { fill: 'rgba(10,15,40,0.4)',    stroke: 'rgba(0,245,255,0.15)' },
+    { fill: 'rgba(0,100,180,0.4)',   stroke: 'rgba(0,180,255,0.5)'  },
+    { fill: 'rgba(0,160,210,0.5)',   stroke: 'rgba(0,220,255,0.6)'  },
+    { fill: 'rgba(60,120,230,0.55)', stroke: 'rgba(100,150,255,0.65)' },
+    { fill: 'rgba(140,50,220,0.6)',  stroke: 'rgba(180,90,255,0.7)' },
+    { fill: 'rgba(220,20,160,0.65)', stroke: 'rgba(255,70,190,0.8)' },
+    { fill: 'rgba(255,30,90,0.75)',  stroke: 'rgba(255,90,140,0.9)' },
   ];
 
   function getDensityColor(count, breaks) {
     const idx = bucketIndex(count, breaks);
-    // Jaga-jaga: kalau idx di luar jangkauan karena alasan apapun,
-    // fallback ke warna "tidak ada data" alih-alih undefined (mencegah crash).
     return DENSITY_COLORS[idx] || DENSITY_COLORS[0];
   }
 
-  /* ---- Public API ---- */
-  // csvUrls bisa berupa string tunggal atau array string.
-  // Setiap URL di-fetch & di-parse; hasilnya digabung jadi satu rawRows.
-  // Kalau salah satu file gagal (mis. belum ada data/viewers_youtube.csv),
-  // itu di-skip dengan warning — tidak menggagalkan seluruh load selama
-  // MINIMAL SATU file berhasil dimuat.
-  async function load(csvUrls) {
-    const urls = Array.isArray(csvUrls) ? csvUrls : [csvUrls];
+  // ══════════════════════════════════════════════════════════════
+  //  PUBLIC API — load()
+  // ══════════════════════════════════════════════════════════════
+  /**
+   * load({ mapCsvUrls, ageGenderUrl, summaryFormUrl, provinceUrl })
+   *
+   * mapCsvUrls     — array URL viewers_merged.csv (untuk peta)
+   * ageGenderUrl   — URL age_gender_merged.csv (YouTube Analytics)
+   * summaryFormUrl — URL summary_form.json (output clean_sheets.py)
+   * provinceUrl    — URL output_province.csv (untuk total views YT)
+   */
+  async function load({ mapCsvUrls, ageGenderUrl, summaryFormUrl, provinceUrl }) {
+    const urls = Array.isArray(mapCsvUrls) ? mapCsvUrls : [mapCsvUrls];
+
+    // ── 1. Load CSV peta (viewers_merged) ──────────────────────
     let merged = [];
     let anySuccess = false;
     let nextId = 1;
-
     for (const url of urls) {
       try {
         const resp = await fetch(url);
         if (!resp.ok) throw new Error('HTTP ' + resp.status + ' — ' + url);
         const text = await resp.text();
         const parsed = parseCSV(text);
-        // Re-number id supaya tidak bentrok antar file saat digabung
         parsed.forEach(r => { r.id = String(nextId++); });
         merged = merged.concat(parsed);
         anySuccess = true;
       } catch (e) {
-        console.warn('Lewati file CSV (gagal dimuat):', url, e.message);
+        console.warn('Lewati file CSV peta (gagal):', url, e.message);
       }
     }
+    if (!anySuccess) throw new Error('Semua CSV peta gagal dimuat: ' + urls.join(', '));
+    rawRows = merged;
 
-    if (!anySuccess) {
-      throw new Error('Semua file CSV gagal dimuat: ' + urls.join(', '));
+    // ── 2. Load age_gender_merged.csv ──────────────────────────
+    try {
+      const resp = await fetch(ageGenderUrl);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const text = await resp.text();
+      const lines = text.trim().split('\n');
+      const headers = lines[0].split(',').map(h => h.trim());
+      ageGenderYT = lines.slice(1)
+        .filter(l => l.trim())
+        .map(l => {
+          const parts = l.split(',');
+          const obj = {};
+          headers.forEach((h, i) => { obj[h] = (parts[i] || '').trim(); });
+          return obj;
+        });
+      console.info('age_gender_merged.csv dimuat:', ageGenderYT.length, 'baris');
+    } catch (e) {
+      console.warn('age_gender_merged.csv gagal dimuat:', e.message);
+      ageGenderYT = [];
     }
 
-    rawRows = merged;
-    return rawRows;
+    // ── 3. Load summary_form.json ───────────────────────────────
+    try {
+      const resp = await fetch(summaryFormUrl);
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      summaryForm = await resp.json();
+      console.info('summary_form.json dimuat, responden:', summaryForm.total_responden_form);
+    } catch (e) {
+      console.warn('summary_form.json gagal dimuat:', e.message);
+      summaryForm = null;
+    }
+
+    // ── 4. Total views YouTube dari output_province.csv ─────────
+    const totalViewsYT = await loadTotalViewsYT(provinceUrl);
+    console.info('Total views YouTube:', totalViewsYT);
+
+    return { rawRows, totalViewsYT };
   }
 
-  function getRawRows() { return rawRows; }
+  /* ---- Public getters ---- */
+  function getRawRows()    { return rawRows; }
+  function getSummaryForm(){ return summaryForm; }
+  function getAgeGenderYT(){ return ageGenderYT; }
 
   function getProvSummary() {
     return aggregateByProvince(rawRows);
   }
 
+  // computeGlobalCombined dipanggil dari app.js setelah load()
+  // dengan totalViewsYT yang sudah diketahui
+  function getGlobalCombined(totalViewsYT) {
+    return computeGlobalCombined(totalViewsYT);
+  }
+
+  // Legacy getGlobal — masih dipakai untuk header stats (total, provinsi)
   function getGlobal() {
-    return computeGlobal(rawRows);
-  }
-
-  function getAgeGroupsFor(provData) {
-    return getAgeGroups(provData.ages);
-  }
-
-  function getPeakFor(provData) {
-    return getPeakTimeData(provData);
+    const provinces = new Set(rawRows.map(r => normalizeProvince(r.province)));
+    const sf = summaryForm || {};
+    return {
+      total:       (sf.total_responden_form || 0),
+      totalMale:   (sf.gender || {})['Laki-Laki'] || 0,
+      totalFemale: (sf.gender || {})['Perempuan']  || 0,
+      provinces:   provinces.size,
+    };
   }
 
   function getAllMessages() {
     return rawRows
       .filter(r => r.message && r.message.trim())
       .map(r => ({
-        text: r.message.trim(),
-        city: r.city,
+        text:     r.message.trim(),
+        city:     r.city,
         province: normalizeProvince(r.province),
-        gender: r.gender
+        gender:   r.gender,
       }));
   }
 
-  function getMaxProvCount(provMap) {
-    return Math.max(...Object.values(provMap).map(p => p.total), 1);
-  }
+  function getColorFor(count, breaks) { return getDensityColor(count, breaks); }
+  function getBreaks(provMap)          { return computeBreaks(provMap); }
+  function getProvRanking(provMap)     { return Object.values(provMap).sort((a,b)=>b.total-a.total); }
 
-  function getColorFor(count, breaks) {
-    return getDensityColor(count, breaks);
-  }
-
-  function getBreaks(provMap) {
-    return computeBreaks(provMap);
-  }
-
-  function getProvRanking(provMap) {
-    return Object.values(provMap).sort((a,b)=>b.total-a.total);
-  }
-
-  return { load, getRawRows, getProvSummary, getGlobal, getAgeGroupsFor, getPeakFor,
-           getAllMessages, getMaxProvCount, getColorFor, getProvRanking, getBreaks };
+  return {
+    load,
+    getRawRows, getSummaryForm, getAgeGenderYT,
+    getProvSummary, getGlobal, getGlobalCombined,
+    getAllMessages, getColorFor, getProvRanking, getBreaks,
+  };
 
 })();
 

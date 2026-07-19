@@ -1,52 +1,72 @@
 // ============================================================
 //  app.js  —  Main Application Entry Point
 //  Orchestrates: Data, Map, Charts, Messages
+//
+//  PERUBAHAN UTAMA:
+//  - DataModule.load() sekarang terima object {mapCsvUrls, ...}
+//  - Panel kanan FIXED data global se-Indonesia (tidak berubah saat klik peta)
+//  - globalData dari getGlobalCombined(totalViewsYT) untuk gender & umur
+//  - Klik provinsi → highlight peta + highlight ranking saja
+//  - renderRightPanel() dipanggil SEKALI di awal, tidak lagi di onProvinceClick
 // ============================================================
 
 (async () => {
   'use strict';
 
   // ---- 1. Load & process data ----
-  let rows, provMap, global;
+  let provMap, totalViewsYT, globalData, globalLegacy;
   try {
-    // data/viewers.csv sudah berisi data gabungan final (dummy + YouTube + form).
-    // DataModule.load() tetap mendukung array file kalau nanti Anda mau
-    // pisahkan lagi sumbernya.
-    rows    = await DataModule.load('data/viewers.csv');
-    provMap = DataModule.getProvSummary();
-    global  = DataModule.getGlobal();
-  } catch(e) {
+    const result = await DataModule.load({
+      mapCsvUrls:     ['data/viewers_merged.csv'],
+      ageGenderUrl:   'data/youtube/age_gender_merged.csv',
+      summaryFormUrl: 'data/GSheets/summary_form.json',
+      provinceUrl:    'data/youtube/output_province.csv',
+    });
+    totalViewsYT = result.totalViewsYT;
+    provMap      = DataModule.getProvSummary();
+    globalData   = DataModule.getGlobalCombined(totalViewsYT);
+    globalLegacy = DataModule.getGlobal();
+  } catch (e) {
     console.error('Data load failed:', e);
     document.getElementById('loading').innerHTML =
-      '<div style="color:#ff2d9f;text-align:center;">❌ Gagal memuat data CSV.<br>Pastikan file <code>data/viewers.csv</code> ada.</div>';
+      '<div style="color:#ff2d9f;text-align:center;padding:20px;">' +
+      '❌ Gagal memuat data.<br>' +
+      'Pastikan file <code>data/viewers_merged.csv</code>, ' +
+      '<code>data/summary_form.json</code>, dan ' +
+      '<code>data/youtube/age_gender_merged.csv</code> tersedia.' +
+      '</div>';
     return;
   }
 
   // ---- 2. Update header stats ----
-  document.getElementById('stat-total').textContent  = global.total.toLocaleString();
-  document.getElementById('stat-prov').textContent   = global.provinces;
-  document.getElementById('stat-male').textContent   = global.totalMale;
-  document.getElementById('stat-female').textContent = global.totalFemale;
+  // Total gabungan: YouTube views + responden form
+  const totalGabungan = globalData ? globalData.totalGabungan : globalLegacy.total;
+  document.getElementById('stat-total').textContent  = totalGabungan.toLocaleString('id-ID');
+  document.getElementById('stat-prov').textContent   = globalLegacy.provinces;
+  document.getElementById('stat-male').textContent   =
+    globalData ? globalData.gender['Laki-Laki'].toLocaleString('id-ID') : globalLegacy.totalMale;
+  document.getElementById('stat-female').textContent =
+    globalData ? globalData.gender['Perempuan'].toLocaleString('id-ID')  : globalLegacy.totalFemale;
 
   // ---- 3. Apply Chart.js global defaults ----
   ChartsModule.applyGlobalDefaults();
 
-  // ---- 4. Render global peak time (left panel) ----
-  ChartsModule.renderGlobalPeak('chart-global-peak', global.hourDist);
+  // ---- 4. Render panel kiri: global peak time (bar chart overview) ----
+  const hourDist = globalData ? globalData.hourDist : Array(24).fill(0);
+  ChartsModule.renderGlobalPeak('chart-global-peak', hourDist);
 
   // ---- 5. Build province ranking list ----
   buildProvRanking(provMap);
 
-  // ---- 6. Init map ----
-  const maxCount = DataModule.getMaxProvCount(provMap);
-  const breaks   = DataModule.getBreaks(provMap); // quantile breakpoints, biar warna tidak didominasi 1 provinsi
-  MapModule.init('map', provMap, maxCount, breaks, onProvinceClick);
+  // ---- 6. Init map (tanpa clickCallback untuk panel kanan) ----
+  const breaks = DataModule.getBreaks(provMap);
+  MapModule.init('map', provMap, breaks);
 
   // ---- 7. Build legend ----
   buildLegend(breaks);
 
-  // ---- 8. Init default right panel (all-Indonesia view) ----
-  renderRightPanel(null);
+  // ---- 8. Render panel kanan SEKALI — fixed data global se-Indonesia ----
+  renderRightPanel();
 
   // ---- 9. Start floating messages ----
   const allMsgs = DataModule.getAllMessages();
@@ -55,116 +75,87 @@
   // ---- 10. Hide loading screen ----
   setTimeout(() => {
     const loading = document.getElementById('loading');
-    if (loading) { loading.style.opacity = '0'; setTimeout(()=>loading.remove(), 400); }
+    if (loading) {
+      loading.style.opacity = '0';
+      setTimeout(() => loading.remove(), 400);
+    }
   }, 500);
 
 
   // ===========================================================
-  //  PROVINCE CLICK HANDLER
+  //  RIGHT PANEL — FIXED DATA SE-INDONESIA
+  //  Dipanggil sekali saat load, tidak berubah saat klik peta
   // ===========================================================
-  function onProvinceClick(pd, geoName) {
-    renderRightPanel(pd);
-    MessagesModule.triggerProvinceMessages(pd.messages.map(m => ({
-      text: m.text, city: m.city, province: pd.name, gender: ''
-    })));
-    // Update province list highlight
-    document.querySelectorAll('.prov-list-item').forEach(el => {
-      el.classList.toggle('active', el.dataset.prov === pd.name);
-    });
-  }
-
-
-  // ===========================================================
-  //  RIGHT PANEL RENDERER
-  // ===========================================================
-  function renderRightPanel(pd) {
-    // Province header
+  function renderRightPanel() {
+    // ── Header panel kanan ──────────────────────────────────
     const header = document.getElementById('province-header');
-    const isAll  = pd === null;
-
-    if (isAll) {
+    if (header) {
+      const totalForm = globalData ? globalData.totalForm : 0;
       header.innerHTML = `
-        <div class="province-name glitch">🇮🇩 INDONESIA</div>
-        <div class="province-count">Total <span>${global.total}</span> penonton dari <span>${global.provinces}</span> provinsi</div>
+        <div class="province-name glitch" style="color:#00f5ff;">🇮🇩 DATA SE-INDONESIA</div>
+        <div class="province-count" style="margin-top:4px;">
+          Periode <span>Jan 2025 – Jul 2026</span>
+        </div>
         <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="stat-badge cyan">💙 ${global.totalMale} Laki-laki</span>
-          <span class="stat-badge pink">💛 ${global.totalFemale} Perempuan</span>
-        </div>
-      `;
-    } else {
-      const topCity = Object.entries(pd.cities).sort((a,b)=>b[1]-a[1])[0];
-      header.innerHTML = `
-        <div class="province-name">${pd.name}</div>
-        <div class="province-count"><span>${pd.total}</span> penonton terdaftar</div>
-        <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-          <span class="stat-badge cyan">💙 ${pd.male} M</span>
-          <span class="stat-badge pink">💛 ${pd.female} F</span>
-          ${topCity ? `<span class="stat-badge purple">📍 ${topCity[0]}</span>` : ''}
+          <span class="stat-badge cyan">📺 ${totalViewsYT.toLocaleString('id-ID')} viewers YT</span>
+          <span class="stat-badge purple">📋 ${totalForm.toLocaleString('id-ID')} responden form</span>
         </div>
       `;
     }
 
-    // Peak time chart
-    if (isAll) {
-      ChartsModule.renderPeakTime('chart-peak', global.hourDist, 'Semua Provinsi');
-    } else {
-      const peakData = DataModule.getPeakFor(pd);
-      ChartsModule.renderPeakTime('chart-peak', peakData, pd.name);
-    }
+    if (!globalData) return;
 
-    // Gender chart
-    if (isAll) {
-      ChartsModule.renderGender('chart-gender', global.totalMale, global.totalFemale);
-    } else {
-      ChartsModule.renderGender('chart-gender', pd.male, pd.female);
-    }
+    // ── Peak watching time (dari form — jam tonton responden) ─
+    ChartsModule.renderPeakTime('chart-peak', globalData.hourDist);
 
-    // Age chart
-    const ageGroups = isAll
-      ? DataModule.getAgeGroupsFor({ ages: rows.map(r=>parseInt(r.age)).filter(a=>!isNaN(a)) })
-      : DataModule.getAgeGroupsFor(pd);
-    ChartsModule.renderAge('chart-age', ageGroups);
+    // ── Gender (gabungan YouTube + Form) ─────────────────────
+    ChartsModule.renderGender('chart-gender', globalData.gender);
 
-    // Status chart
-    if (isAll) {
-      const allStatus = { Student: 0, Worker: 0, Unemployed: 0 };
-      Object.values(provMap).forEach(p => {
-        allStatus.Student    += p.statuses.Student;
-        allStatus.Worker     += p.statuses.Worker;
-        allStatus.Unemployed += p.statuses.Unemployed;
-      });
-      ChartsModule.renderStatus('chart-status', allStatus);
-    } else {
-      ChartsModule.renderStatus('chart-status', pd.statuses);
-    }
+    // ── Distribusi umur (gabungan YouTube + Form, 3 bucket) ──
+    ChartsModule.renderAge('chart-age', globalData.umur);
+
+    // ── Status penonton (dari form saja) ─────────────────────
+    ChartsModule.renderStatus('chart-status', globalData.status);
   }
 
 
   // ===========================================================
   //  PROVINCE RANKING LIST (LEFT PANEL)
+  //  Klik item → highlight peta saja, panel kanan tidak berubah
   // ===========================================================
   function buildProvRanking(provMap) {
-    const ranked = DataModule.getProvRanking(provMap);
+    const ranked    = DataModule.getProvRanking(provMap);
     const container = document.getElementById('prov-ranking');
-    const maxVal = ranked[0] ? ranked[0].total : 1;
+    const maxVal    = ranked[0] ? ranked[0].total : 1;
 
     container.innerHTML = '';
     ranked.forEach((pd, i) => {
       const pct = ((pd.total / maxVal) * 100).toFixed(0);
       const el  = document.createElement('div');
-      el.className = 'prov-list-item';
+      el.className    = 'prov-list-item';
       el.dataset.prov = pd.name;
-      el.title = `${pd.name}: ${pd.total} penonton`;
+      el.title        = `${pd.name}: ${pd.total} penonton`;
       el.innerHTML = `
-        <span class="prov-rank">${String(i+1).padStart(2,'0')}</span>
-        <span style="font-size:11px;color:#e8eaf6;flex:0 0 90px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">${pd.name}</span>
-        <span class="prov-bar-wrap"><span class="prov-bar" style="width:${pct}%"></span></span>
-        <span class="prov-num">${pd.total}</span>
+        <span class="prov-rank">${String(i + 1).padStart(2, '0')}</span>
+        <span style="font-size:11px;color:#e8eaf6;flex:0 0 90px;
+                     overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">
+          ${pd.name}
+        </span>
+        <span class="prov-bar-wrap">
+          <span class="prov-bar" style="width:${pct}%"></span>
+        </span>
+        <span class="prov-num">${pd.total.toLocaleString('id-ID')}</span>
       `;
+
+      // Klik → highlight peta + highlight item list
+      // Panel kanan TIDAK berubah
       el.addEventListener('click', () => {
         MapModule.selectProvince(pd.name);
-        onProvinceClick(pd, pd.name);
+        document.querySelectorAll('.prov-list-item')
+          .forEach(el => el.classList.remove('active'));
+        el.classList.add('active');
       });
+
       container.appendChild(el);
     });
   }
@@ -177,10 +168,9 @@
     const container = document.getElementById('density-legend');
     container.innerHTML = '';
 
-    // Bucket 0 = tidak ada data. Bucket 1..N = quantile groups dari breaks.
     const items = [{ label: 'Tidak ada data', sample: 0 }];
     let prev = 0;
-    breaks.forEach((b, i) => {
+    breaks.forEach(b => {
       const lo = prev + 1;
       const hi = b;
       items.push({ label: lo === hi ? `${lo}` : `${lo} – ${hi}`, sample: hi });
@@ -193,8 +183,10 @@
       const el = document.createElement('div');
       el.className = 'legend-item';
       el.innerHTML = `
-        <span class="legend-dot" style="background:${fill};border:1px solid rgba(0,245,255,0.3);"></span>
-        <span>${label} ${sample === 0 ? '' : 'penonton'}</span>
+        <span class="legend-dot"
+              style="background:${fill};border:1px solid rgba(0,245,255,0.3);">
+        </span>
+        <span>${label}${sample === 0 ? '' : ' penonton'}</span>
       `;
       container.appendChild(el);
     });
@@ -202,25 +194,24 @@
 
 
   // ===========================================================
-  //  RESET BUTTON
+  //  RESET BUTTON — reset view peta saja, panel kanan tetap
   // ===========================================================
   document.getElementById('btn-reset')?.addEventListener('click', () => {
     MapModule.resetView();
-    renderRightPanel(null);
-    document.querySelectorAll('.prov-list-item').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.prov-list-item')
+      .forEach(el => el.classList.remove('active'));
+    // Panel kanan tidak di-reset karena sudah fixed global
   });
 
 
   // ===========================================================
   //  CSV UPLOAD (optional live reload)
   // ===========================================================
-  document.getElementById('csv-upload')?.addEventListener('change', async function() {
+  document.getElementById('csv-upload')?.addEventListener('change', async function () {
     const file = this.files[0];
     if (!file) return;
-    const text = await file.text();
-    // Re-init with new data
-    const tempLink = URL.createObjectURL(new Blob([text], {type:'text/csv'}));
-    location.href = location.href; // simple reload approach
+    // Simple reload — bisa dikembangkan jadi hot-reload tanpa refresh
+    location.reload();
   });
 
 })();
